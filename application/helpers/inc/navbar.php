@@ -10,12 +10,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Sugerir restaurante <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Ayuda en línea</a>
-      </li>
-      <li class="nav-item active">
         <a href="registro.php" class="nav-link">Registrate</a>
       </li>
       <li class="nav-item active">
