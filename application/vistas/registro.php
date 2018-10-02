@@ -55,7 +55,20 @@
                             <label for="password">Password:</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password">
                         </div>
+                        <div class="form-group">
+                            <label for="password-confirm">Repetir Password:</label>
+                            <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="Reescriba su password">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoria:</label>
+                            <select name="" id="">
+                                <option value="">Comercio</option>
+                                <option value="">Cliente</option>
+                                <option value="">Repartidor</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Ingresar</button>
+                        <button type="reset" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                         <br>
                         <p class="text-center">
                             ¿Ya tenes una cuenta? <a href="ingreso.php">Ingrese Aqui</a>

@@ -40,12 +40,20 @@
                 <div class="card-body" style="">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label for="">E-mail:</label>
+                            <label for="email">E-mail:</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Escriba su email">
                         </div>
                         <div class="form-group">
-                            <label for="">Password:</label>
+                            <label for="password">Password:</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoria:</label>
+                            <select name="" id="">
+                                <option value="">Comercio</option>
+                                <option value="">Cliente</option>
+                                <option value="">Repartidor</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="checkbox" name="recordarme" id="recordarme"> Recordarme
