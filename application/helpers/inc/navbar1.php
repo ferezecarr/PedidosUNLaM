@@ -12,16 +12,16 @@
       <li class="nav-item active">
         <a href="registro.php" class="nav-link">Mi Perfil</a>
       </li>
-      <li class="nav-item">
-        <a href="ingreso.php" class="nav-link">Cargar Menús</a>
+      <li class="nav-item active">
+        <a href="cargarMenu.php" class="nav-link">Cargar Menús</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a href="pedidos.php" class="nav-link">Pedidos</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a href="entregas.php" class="nav-link">Entregas</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a href="actividad.php" class="nav-link">Actividad</a>
       </li>
     </ul>
