@@ -33,6 +33,11 @@
                 </ol>
             </nav>
 
+        <div class="alert alert-success page-alert" id="alert-1">
+          <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
+          <strong>¡Realizado!</strong> Nuevo Usuario
+        </div>
+
             <div class="card">
                 <div class="card-header">
                     Ingresar a mi cuenta
@@ -61,13 +66,13 @@
                         </div>
                         <div class="form-group">
                             <label for="categoria">Categoria:</label>
-                            <select name="" id="">
+                            <select name="categoria" id="categoria" class="form-control">
                                 <option value="">Comercio</option>
                                 <option value="">Cliente</option>
                                 <option value="">Repartidor</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Ingresar</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Registrase</button>
                         <button type="reset" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                         <br>
                         <p class="text-center">

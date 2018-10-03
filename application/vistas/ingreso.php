@@ -33,6 +33,11 @@
                 </ol>
             </nav>
 
+        <div class="alert alert-danger page-alert" id="alert-1">
+            <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
+            <strong>¡Error!</strong> El usuario ya existe
+        </div>
+
             <div class="card" style="">
                 <div class="card-header">
                     Ingresar a mi cuenta
@@ -49,7 +54,7 @@
                         </div>
                         <div class="form-group">
                             <label for="categoria">Categoria:</label>
-                            <select name="" id="">
+                            <select name="categoria" id="categoria" class="form-control">
                                 <option value="">Comercio</option>
                                 <option value="">Cliente</option>
                                 <option value="">Repartidor</option>
@@ -59,6 +64,7 @@
                             <input type="checkbox" name="recordarme" id="recordarme"> Recordarme
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Ingresar</button>
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
                 </div>
             </div>
