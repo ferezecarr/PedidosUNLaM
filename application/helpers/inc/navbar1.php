@@ -10,10 +10,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a href="registro.php" class="nav-link">Registrate</a>
+        <a href="registro.php" class="nav-link">Mi Perfil</a>
       </li>
-      <li class="nav-item ">
-        <a href="ingreso.php" class="nav-link">Ingresar</a>
+      <li class="nav-item">
+        <a href="ingreso.php" class="nav-link">Cargar Menús</a>
+      </li>
+      <li class="nav-item">
+        <a href="pedidos.php" class="nav-link">Pedidos</a>
+      </li>
+      <li class="nav-item">
+        <a href="entregas.php" class="nav-link">Entregas</a>
+      </li>
+      <li class="nav-item">
+        <a href="actividad.php" class="nav-link">Actividad</a>
       </li>
     </ul>
   </div>

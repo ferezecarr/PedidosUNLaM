@@ -9,6 +9,7 @@
     $INC_DIR = $_SERVER["DOCUMENT_ROOT"]. "/application/helpers/inc/";
     $HEADER_DIR = $INC_DIR . "header.php";
     $NAVBAR_DIR = $INC_DIR . "navbar.php";
+    $NAVBAR_1_DIR = $INC_DIR . "navbar1.php";
    
     $INDEX_HOST = "http://localhost/application/vistas/index.php";
 
