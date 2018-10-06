@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a href="registro.php" class="nav-link">Mi Perfil</a>
+        <a href="comercio.php" class="nav-link">Mi Perfil</a>
       </li>
       <li class="nav-item active">
         <a href="cargarMenu.php" class="nav-link">Cargar Menús</a>

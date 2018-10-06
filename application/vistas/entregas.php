@@ -30,7 +30,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Comercio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Entregas</li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="entregas.php">Entregas</a></li>
                 </ol>
             </nav>
 
@@ -52,19 +52,19 @@
                             <tbody>
                                  <tr>
                                     <th scope="row">1</th>
-                                        <td>Cliente uno</td>
+                                        <td>Cliente Uno</td>
                                         <td>120.00</td>
-                                        <td>En Preparación</td>
+                                        <td>En Espera</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
-                                        <td>Fideos con Salsa + Bebida</td>
-                                        <td>100.00</td>
-                                        <td>Enviado</td>
+                                        <td>Cliente Dos</td>
+                                        <td>160.00</td>
+                                        <td>En Viaje</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
-                                        <td>1 Muzzarella Grande + Bebida</td>
+                                        <td>Cliente Tres</td>
                                         <td>175.00</td>
                                         <td>Entregado</td>
                                 </tr>

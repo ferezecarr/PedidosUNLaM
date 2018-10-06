@@ -30,7 +30,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Comercio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Cargar Menú</li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="cargarMenu.php">Cargar Menú</a></li>
                 </ol>
             </nav>
 
