@@ -14,4 +14,8 @@
    
     $INDEX_HOST = "http://localhost/application/vistas/index.php";
 
+    $CON_DIR = $_SERVER["DOCUMENT_ROOT"]. "/application/helpers/config/";
+
+    $CONFIG_DIR = $CON_DIR . "config.php";
+
 ?>
