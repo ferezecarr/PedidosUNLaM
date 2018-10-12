@@ -29,8 +29,8 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Cliente</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Mis Pedidos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="cliente.php">Cliente</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="comercios.php">Comercios</a></li>
                 </ol>
             </nav>
 

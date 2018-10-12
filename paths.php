@@ -11,6 +11,7 @@
     $NAVBAR_DIR = $INC_DIR . "navbar.php";
     $NAVBAR_1_DIR = $INC_DIR . "navbar1.php";
     $NAVBAR_2_DIR = $INC_DIR . "navbar2.php";
+    $NAVBAR_3_DIR = $INC_DIR . "navbar3.php";
    
     $INDEX_HOST = "http://localhost/application/vistas/index.php";
 
