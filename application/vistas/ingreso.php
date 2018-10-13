@@ -33,10 +33,10 @@
                 </ol>
             </nav>
 
-        <div class="alert alert-danger page-alert" id="alert-1">
+        <!--<div class="alert alert-danger page-alert" id="alert-1">
             <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
             <strong>¡Error!</strong> El usuario ya existe
-        </div>
+        </div>-->
 
             <div class="card" style="">
                 <div class="card-header">
