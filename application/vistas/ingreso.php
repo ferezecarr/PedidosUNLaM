@@ -43,23 +43,15 @@
                     Ingresar a mi cuenta
                 </div>
                 <div class="card-body" style="">
-                    <form action="" method="post">
+                    <form action="<?php echo $VALIDAR_LOGIN_HOST ?>" method="post">
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Escriba su email">
+                            <input type="email" name="email" id="email" class="form-control"  placeholder="Escriba su email">
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password">
-                        </div>
-                        <div class="form-group">
-                            <label for="categoria">Categoria:</label>
-                            <select name="categoria" id="categoria" class="form-control">
-                                <option value="">Comercio</option>
-                                <option value="">Cliente</option>
-                                <option value="">Repartidor</option>
-                            </select>
-                        </div>
+                        <br>
                         <div class="form-group">
                             <input type="checkbox" name="recordarme" id="recordarme"> Recordarme
                         </div>
