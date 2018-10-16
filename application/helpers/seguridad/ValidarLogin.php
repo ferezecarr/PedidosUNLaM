@@ -7,7 +7,7 @@ session_start();
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-$recordarme = "";
+//$recordarme = "";
 
 $conexion = new Conexion();
 
@@ -19,19 +19,19 @@ $query = "SELECT LO.email, LO.password, ROL.descripcion, U.nombre, U.telefono, U
 
 
 $statement = $conexion->prepare($query);
-$statement->bind_param('ss',$usuario,$password);
+$statement->bind_param('ss',$email,$password);
 $statement->execute();
 $resultado = $statement->get_result();
 $row = mysql_affected_rows($resultado);
 
 var_dump($row);
 
-if(isset($_COOKIE['recordarme2'])){
+/*if(isset($_COOKIE['recordarme2'])){
     $recordarme = $_COOKIE['recordarme2'];
 } if(isset($_POST['recordarme'])){
     $recordarme = $_POST['recordarme'];
     setcookie('recordarme2',$recordarme,0,'/');
-}
+}*/
 
 if($resultado->num_rows > 0){
 

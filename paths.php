@@ -29,7 +29,8 @@
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
 	$SESION_IN_HOST = "http://localhost/application/helpers/seguridad/sesiones/sesion.php";
-	$VALIDAR_LOGIN_HOST = "http://localhost/application/helpers/seguridad/ValidarLogin.php";
+    $VALIDAR_LOGIN_HOST = "http://localhost/application/helpers/seguridad/ValidarLogin.php";
+    $REGISTRAR_LOGIN_HOST = "http://localhost/application/helpers/seguridad/registrarLogin.php";
 
     $PANEL_COMERCIO_HOST = "http://localhost/application/vistas/comercio.php";
     $PANEL_CLIENTE_HOST = "http://localhost/application/vistas/cliente.php";

@@ -33,17 +33,17 @@
                 </ol>
             </nav>
 
-        <div class="alert alert-success page-alert" id="alert-1">
+        <!--<div class="alert alert-success page-alert" id="alert-1">
           <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
           <strong>¡Realizado!</strong> Nuevo Usuario
-        </div>
+        </div>-->
 
             <div class="card">
                 <div class="card-header">
                     Ingresar a mi cuenta
                 </div>
                 <div class="card-body" style="">
-                    <form action="" method="post">
+                    <form action="<?php echo $REGISTRAR_LOGIN_HOST; ?>" method="post">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
                             <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Escriba su nombre">
