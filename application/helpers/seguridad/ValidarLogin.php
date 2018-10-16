@@ -11,10 +11,17 @@ $password = $_POST['password'];
 
 $conexion = new Conexion();
 
-$query = "SELECT LO.email, LO.password, ROL.descripcion, U.nombre, U.telefono, U.direccion, U.edad 
-          FROM login AS LO INNER JOIN usuario AS U ON LO.idUsuario = U.idUsuario  
-          INNER JOIN rol AS ROL ON U.idRol = ROL.idRol 
-          WHERE LO.email = ? AND LO.password = ? ";
+/*$query = "SELECT LO.email, LO.password, ROL.tipoRol, U.nombre, U.telefono, U.direccion, U.edad 
+          FROM Login AS LO INNER JOIN usuario AS U ON LO.idUsuario = U.idUsuario  
+          INNER JOIN Rol AS ROL ON U.idRol = ROL.idRol 
+          WHERE LO.email = ? AND LO.password = ? ";*/
+
+$query = "SELECT Login.email , Login.password , Rol.tipoRol , Usuario.nombre, Usuario.numero , Usuario.direccion
+          FROM Login INNER JOIN Usuario ON Login.idUsuario = Usuario.idUsuario
+          INNER JOIN Rol ON Usuario.idRol = Rol.idRol
+          WHERE Login.email = ? AND Login.password = ?";
+
+
 
 
 
@@ -38,7 +45,7 @@ if($resultado->num_rows > 0){
     $id = $row[6];
     $rol = $row[2];
     $email = $row[3];
-    $descripcion = $row[4];
+    $tipoRol = $row[4];
     $nombre = $row[5];
     $telefono = $row[7];
     $direccion = $row[8];
@@ -48,7 +55,7 @@ if($resultado->num_rows > 0){
 	$_SESSION['email'] = $email;
 	$_SESSION['rol'] = $rol;
 	$_SESSION['nombre'] = $nombre;
-    $_SESSION['descripcion'] = $descripcion;
+    $_SESSION['tipoRol'] = $tipoRol;
     $_SESSION['telefono'] = $telefono;
     $_SESSION['direccion'] = $direccion;
     $_SESSION['edad'] = $edad;

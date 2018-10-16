@@ -38,11 +38,11 @@
             <strong>¡Error!</strong> El usuario ya existe
         </div>-->
 
-            <div class="card" style="">
+            <div class="card">
                 <div class="card-header">
                     Ingresar a mi cuenta
                 </div>
-                <div class="card-body" style="">
+                <div class="card-body">
                     <form action="<?php echo $VALIDAR_LOGIN_HOST ?>" method="post">
                         <div class="form-group">
                             <label for="email">E-mail:</label>

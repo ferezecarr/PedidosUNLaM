@@ -9,7 +9,8 @@ require_once $CONFIG_DIR;
 			parent::__construct(Config::$host , Config::$user , Config::$pass , Config::$db);
 			if($this->connect_errno){
 				die('Error en la conexion a la base de datos');
-            }
+			}
+			
 		}
 		
 		public function validarCampo($tabla , $columna , $valor){
