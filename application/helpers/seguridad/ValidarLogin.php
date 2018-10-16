@@ -11,19 +11,10 @@ $password = $_POST['password'];
 
 $conexion = new Conexion();
 
-/*$query = "SELECT LO.email, LO.password, ROL.tipoRol, U.nombre, U.telefono, U.direccion, U.edad 
-          FROM Login AS LO INNER JOIN usuario AS U ON LO.idUsuario = U.idUsuario  
-          INNER JOIN Rol AS ROL ON U.idRol = ROL.idRol 
-          WHERE LO.email = ? AND LO.password = ? ";*/
-
 $query = "SELECT Login.email , Login.password , Rol.tipoRol , Usuario.nombre, Usuario.numero , Usuario.direccion
           FROM Login INNER JOIN Usuario ON Login.idUsuario = Usuario.idUsuario
           INNER JOIN Rol ON Usuario.idRol = Rol.idRol
           WHERE Login.email = ? AND Login.password = ?";
-
-
-
-
 
 $statement = $conexion->prepare($query);
 $statement->bind_param('ss',$email,$password);
@@ -31,7 +22,7 @@ $statement->execute();
 $resultado = $statement->get_result();
 $row = mysql_affected_rows($resultado);
 
-var_dump($row);
+
 
 /*if(isset($_COOKIE['recordarme2'])){
     $recordarme = $_COOKIE['recordarme2'];
