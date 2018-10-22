@@ -39,14 +39,14 @@
                     Cargar Menú
                 </div>
                 <div class="card-body" style="">
-                    <form action="" method="post">
+                    <form action="<?php echo $CONTROLADOR_MENU_HOST ?>" method="post">
                         <div class="form-group">
                             <label for="titulo">Título:</label>
                             <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo">
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
-                            <textarea class="form-control" rows="5" id="descripcion"></textarea>
+                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion"></textarea>
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control-file border">

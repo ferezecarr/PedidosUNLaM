@@ -8,7 +8,7 @@
     // CONEXION A LA DB
     $CONEXION_DIR  = $_SERVER["DOCUMENT_ROOT"] .  "/application/helpers/conexion/Conexion.php";
 
-    //TODAS LAS RUTAS DE LA CARPETA INC DENTRO DE HELPERS
+    // TODAS LAS RUTAS DE LA CARPETA INC DENTRO DE HELPERS
     $INC_DIR = $_SERVER["DOCUMENT_ROOT"]. "/application/helpers/inc/";
     $HEADER_DIR = $INC_DIR . "header.php";
     $NAVBAR_DIR = $INC_DIR . "navbar.php";
@@ -22,9 +22,14 @@
 
     $CONFIG_DIR = $CON_DIR . "config.php";
 
-    //RUTAS DESDE EL LOCALHOST PARA LOS HREF O FORMULARIOS O LOS HEADER
+    // RUTAS DESDE EL LOCALHOST PARA LOS HREF O FORMULARIOS O LOS HEADER
 	// EL INDEX DEL PROYECTO
     $INDEX_HOST = "http://localhost/application/vistas/index.php";
+
+    // TODAS LAS RUTAS DE LOS CONTROLADORES DENTRO DE CONTROLADORES
+    $CONTROLADOR_MENU_HOST_ADD = "http://localhost/application/controladores/ControladorMenuAdd.php";
+    $CONTROLADOR_MENU_HOST_MOD = "http://localhost/application/controladores/ControladorMenuMod.php";
+    $CONTROLADOR_MENU_HOST_DEL = "http://localhost/application/controladores/ControladorMenuDel.php";
 
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
