@@ -21,6 +21,9 @@
       <li class="nav-item active">
         <a href="ofertasDelDia.php" class="nav-link">Ofertas del Día</a>
       </li>
+      <li class="nav-item active">
+        <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link" style="margin-left:455px;">Cerrar Sesión</a>
+      </li>
     </ul>
   </div>
 </nav>
