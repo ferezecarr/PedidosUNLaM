@@ -1,5 +1,4 @@
 CREATE DATABASE IF NOT EXISTS pw2;
-
 USE pw2;
 
 CREATE TABLE Rol(
@@ -28,29 +27,12 @@ CREATE TABLE Login(
     FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Precio(
-    idPrecio INT NOT NULL AUTO_INCREMENT,
-    tipoPrecio FLOAT NOT NULL,
-    PRIMARY KEY(idPrecio)
-);
-
-CREATE TABLE Producto(
-    idProducto INT NOT NULL AUTO_INCREMENT,
-    tipoProducto VARCHAR(50) NOT NULL,
-    idPrecio INT,
-    PRIMARY KEY(idProducto,idPrecio),
-    FOREIGN KEY(idPrecio) REFERENCES Precio(idPrecio) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE Menu(
     idMenu INT NOT NULL AUTO_INCREMENT,
     tipoMenu VARCHAR(200) NOT NULL,
-    idPrecio INT,
-    idProducto INT,
+    precio FLOAT NOT NULL,
     idUsuario INT,
-    PRIMARY KEY(idMenu,idPrecio,idProducto,idUsuario),
-    FOREIGN KEY(idPrecio) REFERENCES Precio(idPrecio) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(idProducto) REFERENCES Producto(idProducto) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(idMenu,idUsuario),
     FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -58,10 +40,9 @@ CREATE TABLE Oferta(
     idOferta INT NOT NULL AUTO_INCREMENT,
     tipoOferta VARCHAR(50) NOT NULL,
     idUsuario INT,
-    idPrecio INT,
-    PRIMARY KEY(idOferta,idUsuario,idPrecio),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(idPrecio) REFERENCES Precio(idPrecio) ON DELETE CASCADE ON UPDATE CASCADE
+    precio FLOAT,
+    PRIMARY KEY(idOferta,idUsuario),
+    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Pedido(
@@ -115,25 +96,15 @@ INSERT INTO Login(idLogin,email,password,idUsuario)
         (3,'delivery@delivery.com','delivery',3),
         (4,'administrador@administrador.com','administrador',4);
 
-INSERT INTO Precio(idPrecio,tipoPrecio)
-    VALUES(1,50.00),
-        (2,10.00),
-        (3,150.00);
+INSERT INTO Menu(idMenu,tipoMenu,precio,idUsuario)
+    VALUES(1,'Milanesa con pure',150.00,1),
+        (2,'Carne con papas al horno',200.00,2),
+        (3,'Ensalada Mixta',100.00,3);
 
-INSERT INTO Producto(idProducto,tipoProducto,idPrecio)
-    VALUES(1,'Pan rallado',3),
-        (2,'Huevos',2),
-        (3,'Carne',3);
-
-INSERT INTO Menu(idMenu,tipoMenu,idPrecio,idProducto,idUsuario)
-    VALUES(1,'Milanesa con pure',3,1,1),
-        (2,'Carne con papas al horno',1,3,2),
-        (3,'Ensalada Mixta',2,2,3);
-
-INSERT INTO Oferta(idOferta,tipoOferta,idUsuario,idPrecio)
-    VALUES(1,'Bife de chorizo con papas + gaseosa',1,3),
-        (2,'Sopa de zapallo',2,2),
-        (3,'Sandwich de vacio',3,1);
+INSERT INTO Oferta(idOferta,tipoOferta,idUsuario,precio)
+    VALUES(1,'Bife de chorizo con papas + gaseosa',3,175.00),
+        (2,'Sopa de zapallo',2,70.00),
+        (3,'Sandwich de vacio',1,100.00);
 
 INSERT INTO Pedido(idPedido,tipoPedido,idMenu,idUsuario)
     VALUES(1,'En Preparacion',1,1),
@@ -154,7 +125,3 @@ INSERT INTO Viaje(idViaje,idUsuario,idPedido)
     VALUES(1,1,1),
         (2,2,2),
         (3,3,3);
-
-
-
-
