@@ -1,20 +1,36 @@
 <?php
 
+
 require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 require_once $CONEXION_DIR;
 
-$id = $_POST['id'];
-$tipoMenu = $_POST['tipoMenu'];
-$idPrecio = $_POST['idPrecio'];
-$idProducto = $_POST['idProducto'];
-$idUsuario = $_POST['idUsuario'];
+//$id = $_POST['id'];
+$titulo = $_POST['titulo'];
+$descripcion = $_POST['descripcion'];
+$precio = $_POST['precio'];
+//$idUsuario = $_POST['idUsuario'];
 
-$query = "UPDATE FROM Menu AS ME";
+$conexion= new Conexion();
+
+
+$query = "UPDATE FROM Menu WHERE ";
 $statement = $conexion->prepare($query);
-$statement->bind_param('sssss',$this->id,$this->tipoMenu,$this->idPrecio,$this->idProducto,$this->idUsuario);
 $statement->execute();
-$statement->close();
-$conexion->close();
+$resultado=$statement->get_result();
+$resultado = $statement->affected_rows;
+
+
+
+if($resultado >0)
+
+{
+     echo "Registro guardado";
+    }
+
+  else{
+        echo "Error al guardar";
+    }
+
 
 
 
