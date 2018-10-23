@@ -3,49 +3,33 @@
 require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 require_once $CONEXION_DIR;
 
-$id = $_POST['id'];
+//$id = $_POST['id'];
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
-$idUsuario = $_POST['idUsuario'];
+//$idUsuario = $_POST['idUsuario'];
+
+$conexion= new Conexion();
 
 
-$query = "INSERT INTO Menu(titulo,descripcion,precio,idUsuario) VALUES (?,?,?,?)";
+$query = "INSERT INTO Menu(titulo,descripcion,precio) VALUES ($titulo,$descripcion,$precio)";
 $statement = $conexion->prepare($query);
-$statement->bind_param('ssss',$this->titulo,$this->descripcion,$this->precio,$this->idUsuario);
 $statement->execute();
-$statement->close();
-$conexion->close();
+$resultado=$statement->get_result();
+$resultado = $statement->affected_rows;
 
 
 
-if($resultado->num_rows >0)
+if($resultado >0)
 
 {
-     $row=$resultado->fetch_assoc();
-     
-    switch($row['tipoRol']){
-        case 'Comercio':
-            header("Location: " . $PANEL_COMERCIO_HOST );
-            break;
-        case 'Cliente':
-            header("Location: " . $PANEL_CLIENTE_HOST);
-            break;
-        case 'Delivery':
-            header("Location: " . $PANEL_DELIVERY_HOST);
-            break;
-        default:
-            header("Location: " . $INDEX_HOST);
-            session_destroy();
-            exit();
-                break;
+     echo "Registro guardado";
     }
-}
-  else{
-        header("Location :" . $INDEX_HOST);
 
-        session_destroy();
+  else{
+        echo "Error al guardar";
     }
+
 
 
 
