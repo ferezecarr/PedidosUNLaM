@@ -39,7 +39,7 @@
                     Cargar Menú
                 </div>
                 <div class="card-body" style="">
-                    <form action="<?php echo $ABM_MENU_HOST_ADD ?>" method="post">
+                    <form action="<?php echo $ABM_MENU_HOST_ADD; ?>" method="post">
                         <div class="form-group">
                             <label for="titulo">Título:</label>
                             <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo">

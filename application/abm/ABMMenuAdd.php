@@ -12,10 +12,11 @@ $precio = $_POST['precio'];
 $conexion= new Conexion();
 
 
-$query = "INSERT INTO Menu(titulo,descripcion,precio) VALUES ($titulo,$descripcion,$precio)";
+$query = "INSERT INTO menu(titulo,descripcion,precio,idUsuario) VALUES (?,?,?,2)";
 $statement = $conexion->prepare($query);
+$statement->bind_param('sss',$titulo,$descripcion,$precio);
 $statement->execute();
-$resultado=$statement->get_result();
+//$resultado=$statement->get_result();
 $resultado = $statement->affected_rows;
 
 
