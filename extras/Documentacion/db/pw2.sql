@@ -29,7 +29,8 @@ CREATE TABLE Login(
 
 CREATE TABLE Menu(
     idMenu INT NOT NULL AUTO_INCREMENT,
-    tipoMenu VARCHAR(200) NOT NULL,
+    titulo VARCHAR(200) NOT NULL,
+    descripcion VARCHAR(200) NOT NULL,
     precio FLOAT NOT NULL,
     idUsuario INT,
     PRIMARY KEY(idMenu,idUsuario),
@@ -96,10 +97,10 @@ INSERT INTO Login(idLogin,email,password,idUsuario)
         (3,'delivery@delivery.com','delivery',3),
         (4,'administrador@administrador.com','administrador',4);
 
-INSERT INTO Menu(idMenu,tipoMenu,precio,idUsuario)
-    VALUES(1,'Milanesa con pure',150.00,1),
-        (2,'Carne con papas al horno',200.00,2),
-        (3,'Ensalada Mixta',100.00,3);
+INSERT INTO Menu(idMenu,titulo,descripcion,precio,idUsuario)
+    VALUES(1,'Milanesa con pure','Milanesa con pure',150.00,1),
+        (2,'Carne con papas al horno','Carne con papas al horno',200.00,2),
+        (3,'Ensalada Mixta','Ensalada Mixta',100.00,3);
 
 INSERT INTO Oferta(idOferta,tipoOferta,idUsuario,precio)
     VALUES(1,'Bife de chorizo con papas + gaseosa',3,175.00),

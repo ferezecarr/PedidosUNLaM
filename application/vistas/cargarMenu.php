@@ -46,7 +46,11 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
-                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion"></textarea>
+                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion" placeholder="Escriba su descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Precio:</label>
+                            <input type="number" class="form-control" name="precio" id="precio" placeholder="Escriba su precio">
                         </div>
                         <div class="form-group">
                             <input type="file" class="form-control-file border">
