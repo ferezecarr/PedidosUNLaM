@@ -27,9 +27,9 @@
     $INDEX_HOST = "http://localhost/application/vistas/index.php";
 
     // TODAS LAS RUTAS DE LOS CONTROLADORES DENTRO DE CONTROLADORES
-    $CONTROLADOR_MENU_HOST_ADD = "http://localhost/application/controladores/ControladorMenuAdd.php";
-    $CONTROLADOR_MENU_HOST_MOD = "http://localhost/application/controladores/ControladorMenuMod.php";
-    $CONTROLADOR_MENU_HOST_DEL = "http://localhost/application/controladores/ControladorMenuDel.php";
+    $CONTROLADOR_MENU_HOST_ADD = "http://localhost/application/abm/ABMMenuAdd.php";
+    $CONTROLADOR_MENU_HOST_MOD = "http://localhost/application/abm/ABMMenuMod.php";
+    $CONTROLADOR_MENU_HOST_DEL = "http://localhost/application/abm/ABMMenuDel.php";
 
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
