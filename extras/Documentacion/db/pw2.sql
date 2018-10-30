@@ -9,10 +9,13 @@ CREATE TABLE Rol(
 
 CREATE TABLE Usuario(
     idUsuario INT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL,
     nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
     numero VARCHAR(50) NOT NULL,
+    categoria VARCHAR(50) NOT NULL,
     idRol INT,
     PRIMARY KEY(idUsuario,idRol),
     FOREIGN KEY(idRol) REFERENCES Rol(idRol) ON DELETE CASCADE ON UPDATE CASCADE
@@ -86,11 +89,11 @@ INSERT INTO Rol(idRol,tipoRol) VALUES(1,"Cliente"),
                                     (3,"Delivery"),
                                     (4,"Administrador");
 
-INSERT INTO Usuario(idUsuario,email,nombre,direccion,numero,idRol) 
-    VALUES(1,'cliente@cliente.com','Pepe','Av.Peron 4351','44506789',1),
-        (2,'comercio@comercio.com','Juan','Av.Saenz 789','44509875',2),
-        (3,'delivery@delivery.com','Jose','Av.Rivadavia 8765','44890765',3),
-        (4,'administrador@administrador.com','Admin','Av.Administrador','Administrador',4);
+INSERT INTO Usuario(idUsuario,email,password,nombre,apellido,direccion,numero,categoria,idRol) 
+    VALUES(1,'cliente@cliente.com','cliente','Pepe','Pepe','Av.Peron 4351','44506789','Cliente',1),
+        (2,'comercio@comercio.com','comercio','Juan','Juan','Av.Saenz 789','44509875','Comercio',2),
+        (3,'delivery@delivery.com','delivery','Jose','Jose','Av.Rivadavia 8765','44890765','Delivery',3),
+        (4,'administrador@administrador.com','admin','Admin','Admin','Av.Administrador','44509876','Administrador',4);
 
 INSERT INTO Login(idLogin,email,password,idUsuario)
     VALUES(1,'cliente@cliente.com','cliente',1),

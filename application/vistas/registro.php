@@ -33,9 +33,9 @@
                 </ol>
             </nav>
 
-        <!--<div class="alert alert-success page-alert" id="alert-1">
+        <!--<div class="alert alert-success page-alert" id="">
           <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Cerrar</span></button>
-          <strong>¡Realizado!</strong> Nuevo Usuario
+          <strong>¡Realizado!</strong> Bienvenido
         </div>-->
 
             <div class="card">
@@ -43,7 +43,7 @@
                     Ingresar a mi cuenta
                 </div>
                 <div class="card-body" style="">
-                    <form action="<?php echo $REGISTRAR_LOGIN_HOST; ?>" method="post">
+                    <form action="<?php echo  $ABM_REGISTRO_HOST_ADD; ?>" method="post">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
                             <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Escriba su nombre">
@@ -62,7 +62,15 @@
                         </div>
                         <div class="form-group">
                             <label for="password-confirm">Repetir Password:</label>
-                            <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="Reescriba su password">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Reescriba su password">
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Escriba su dirección">
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número:</label>
+                            <input type="number" name="numero" id="numero" class="form-control" placeholder="Escriba su número">
                         </div>
                         <div class="form-group">
                             <label for="categoria">Categoria:</label>
