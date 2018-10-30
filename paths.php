@@ -43,6 +43,6 @@
 
     $AGREGAR_MENU_HOST = "http://localhost/application/vistas/agregarMenu.php";
     $MODIFICAR_MENU_HOST = "http://localhost/application/vistas/modificarMenu.php";
-    $ELIMINAR_MENU_HOST = "http://localhost/application/vistas/eliminarMenu.php";
+    //$ELIMINAR_MENU_HOST = "http://localhost/application/vistas/eliminarMenu.php";
 
 ?>

@@ -53,7 +53,8 @@
                             <input type="number" class="form-control" name="precio" id="precio" placeholder="Escriba su precio">
                         </div>
                         <div class="form-group">
-                            <input type="file" class="form-control-file border">
+                            <label for="archivo">Seleccione un archivo:</label>
+                            <input type="file" name="file" class="form-control-file border">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Agregar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
