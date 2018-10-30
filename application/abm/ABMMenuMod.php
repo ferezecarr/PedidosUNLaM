@@ -13,7 +13,7 @@ $idUsuario = $_POST['idUsuario'];
 $conexion= new Conexion();
 
 
-$query = "UPDATE Menu SET $id = ? , $titulo = ? , $descripcion = ? , $precio = ? WHERE $idUsuario = ? ";
+$query = "UPDATE Menu SET $id = ? , $titulo = ? , $descripcion = ? , $precio = ?  WHERE $idUsuario = ? ";
 $statement = $conexion->prepare($query);
 $statement->execute();
 $resultado=$statement->get_result();

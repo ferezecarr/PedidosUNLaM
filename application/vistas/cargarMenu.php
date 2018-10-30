@@ -91,15 +91,17 @@
                                 <td><?php echo $row['titulo']; ?></td>
                                 <td><?php echo $row['precio']; ?></td>
                                 <td>
+                                <a href="<?php echo $MODIFICAR_MENU_HOST; echo $row['idMenu']; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; echo $row['idMenu']; ?>">
                                     <button class="btn btn-success">Modificar
-                                    <a href="<?php echo $MODIFICAR_MENU_HOST; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; /*$row['idMenu'];*/ ?>">
-                                    </a>
                                     </button>
+                                </a>
+                                    
                                 </td>
                                 <td>
+                                <a  href="<?php echo $ABM_MENU_HOST_DEL;?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete">
                                     <button class="btn btn-danger">Eliminar
-                                    <a href="<?php echo $ABM_MENU_HOST_DEL; ?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete"></a>
-                                </button>
+                                    </button>
+                                </a>
                                 </td>
                             </tr>
                         <?php } ?>
