@@ -29,8 +29,7 @@
         require_once $HEADER_DIR;
 
     ?>
-        <script src="application/vistas/js/jquery-3.1.1.min.js"></script>
-        <script src="application/vistas/js/bootstrap.min.js"></script> 
+
 </head>
 <body>
 
@@ -50,24 +49,30 @@
                     <li class="breadcrumb-item active" aria-current="page"><a href="cargarMenu.php">Cargar Menú</a></li>
                 </ol>
             </nav>    
-    
-
-
-    <div class="container-fluid">
         <div class="card" style="">
-            
-            <div class="row">
-                <a href="<?php echo $ABM_MENU_HOST_ADD; ?>" class="btn btn-success">Nuevo Registro</a>
-                
-                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
-                    <b>IdMenu: </b><input type="text" id="campo" name="campo" />
-                    <input type="submit" id="enviar" name="enviar" value="Buscar" class="btn btn-success" />
+            <div class="card-header">
+                Cargar Menu
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <a href="<?php echo $AGREGAR_MENU_HOST; ?>" class="btn btn-success btn-lg btn-block">Agregar Menu</a>
+                </div>
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+                    <div class="form-group">
+                        <label for="idMenu">IdMenu:</label>
+                        <input type="text" id="campo" name="campo" class="form-control" placeholder="Buscar">
+                    </div>
+                    <button type="submit" id="enviar" name="enviar" class="btn btn-success btn-lg btn-block">Buscar</button>    
                 </form>
             </div>
+
+            <div class="card-header">
+                Tabla de Menús
+            </div> 
             
             <br>
             
-            <div class="row table-responsive">
+            <div class="table">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -85,12 +90,13 @@
                                 <td><?php echo $row['idMenu']; ?></td>
                                 <td><?php echo $row['titulo']; ?></td>
                                 <td><?php echo $row['precio']; ?></td>
-                                <td><button class="btn btn-success" >
-                                    <a href="modificar.php?id=<?php echo $row['idMenu']; ?>"></a>
+                                <td><a href="<?php echo $MODIFICAR_MENU_HOST; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; /*$row['idMenu'];*/ ?>">
+                                        <button class="btn btn-success">Modificar
+                                    </a>
                                     </button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger"
+                                    <button class="btn btn-danger">Eliminar
                                     <a href="#" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete"></a>
                                 </button>
                                 </td>

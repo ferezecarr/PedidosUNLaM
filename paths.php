@@ -41,4 +41,8 @@
     $PANEL_CLIENTE_HOST = "http://localhost/application/vistas/cliente.php";
     $PANEL_DELIVERY_HOST = "http://localhost/application/vistas/delivery.php";
 
+    $AGREGAR_MENU_HOST = "http://localhost/application/vistas/agregarMenu.php";
+    $MODIFICAR_MENU_HOST = "http://localhost/application/vistas/modificarMenu.php";
+    $ELIMINAR_MENU_HOST = "http://localhost/application/vistas/eliminarMenu.php";
+
 ?>
