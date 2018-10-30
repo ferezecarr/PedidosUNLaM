@@ -1,7 +1,22 @@
 <?php
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
+    require_once $CONEXION_DIR;
 
+    $conexion= new Conexion();
+
+
+    $where = "";
+    
+    if(!empty($_POST))
+    {
+        $valor = $_POST['campo'];
+        if(!empty($valor)){
+            $where = "WHERE idMenu LIKE '%$valor'";
+        }
+    }
+    $sql = "SELECT * FROM menu $where";
+    $resultado = $conexion->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -38,68 +53,43 @@
                 <div class="card-header">
                  +  Agregar Pedido
                 </div>
-                <div class="card-body" style="">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="comercio">Ingrese Comercio:</label>
-                            <input type="text" name="comercio" id="comercio" class="form-control" placeholder="Ingrese un comercio">
-                        </div>
-                        <div class="form-group">
-                            <label for="menu">Ingrese Menú:</label>
-                            <input type="text" name="menu" id="menu" class="form-control" placeholder="Ingrese su menu">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Agregar bebida
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Comprar</button>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
-                    </form>
-                </div>
-            </div>
-            <br>
-            <div class="card" >
-                <div class="card-header">
-                    Entregas
-                </div>
-                <div class="card-body" style="">
-                    <form action="" method="post">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Comercio</th>
-                                    <th scope="col">Menu</th>
-                                    <th scope="col">Precio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                 <tr>
-                                    <th scope="row">1</th>
-                                        <td>Milanesas c/ pure</td>
-                                        <td>150.00</td> 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-            </div>
-            <br>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
+                <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Menu</th>
+                            <th>Precio</th>
+                            <th>Comprar</th>
+                            <th>Agregar Bebida</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                            <tr>
+                                <td><?php echo $row['idMenu']; ?></td>
+                                <td><?php echo $row['titulo']; ?></td>
+                                <td><?php echo $row['precio']; ?></td>
+                                <td>
+                                    <button class="btn btn-success">Comprar
+                                    <a href="<?php echo $MODIFICAR_MENU_HOST; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; /*$row['idMenu'];*/ ?>">
+                                    </a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning">Agregar Bebida
+                                    <a href="<?php echo $ABM_MENU_HOST_DEL; ?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete"></a>
+                                </button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div> 
+    </div>
+            
     
     
 </body>
