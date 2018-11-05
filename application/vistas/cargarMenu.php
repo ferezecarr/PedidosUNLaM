@@ -71,7 +71,6 @@
             </div> 
             
             <br>
-            
             <div class="table">
                 <table class="table table-striped">
                     <thead>
@@ -85,26 +84,28 @@
                     </thead>
                     
                     <tbody>
-                        <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                        <?php 
+                          while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                          <form action="<?php echo $MODIFICAR_MENU_HOST;?>" method="post">
                             <tr>
                                 <td><?php echo $row['idMenu']; ?></td>
                                 <td><?php echo $row['titulo']; ?></td>
                                 <td><?php echo $row['precio']; ?></td>
+
+             
+                                    <td>
+                                        <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
+                                        <input type="submit" name="" class="btn btn-success btn-mg btn-block" value="Modificar">
+                                    </td>
+                                </form>
                                 <td>
-                                <a href="<?php echo $MODIFICAR_MENU_HOST; echo $row['idMenu']; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; echo $row['idMenu']; ?>">
-                                    <button class="btn btn-success">Modificar
-                                    </button>
-                                </a>
-                                    
+                                   <form action="<?php echo $ABM_MENU_HOST_DEL; ?>" method="post">
+                                   <input type="hidden" name="idMenu"  value=<?php echo $row['idMenu'];?>">
+                                   <input type="submit" name="" class="btn btn-danger btn-mg btn-block" value="Eliminar">
                                 </td>
-                                <td>
-                                <a  href="<?php echo $ABM_MENU_HOST_DEL;?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete">
-                                    <button class="btn btn-danger">Eliminar
-                                    </button>
-                                </a>
-                                </td>
+                                </form>
                             </tr>
-                        <?php } ?>
+                            <?php ;}?>"
                     </tbody>
                 </table>
             </div>
