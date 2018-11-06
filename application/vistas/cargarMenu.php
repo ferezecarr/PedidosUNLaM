@@ -95,18 +95,18 @@
              
                                     <td>
                                         <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
-                                        <input type="submit" name="" class="btn btn-success btn-mg btn-block" value="Modificar">
+                                        <button type="submit" name="modificar" class="btn btn-success">Modificar</button>
                                     </td>
                                 </form>
                                 <td>
                                    <form action="<?php echo $ABM_MENU_HOST_DEL; ?>" method="post">
                                    <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
-                                   <input type="submit" name="" class="btn btn-danger btn-mg btn-block"
-                                    value="Eliminar"  data-toggle="modal" data-target="#confirm-delete">
+                                   <button type="submit" name="eliminar"  class="btn btn-danger"
+                                      data-toggle="modal" data-target="#confirm-delete">Eliminar</button>
                                 </td>
                                 </form>
                             </tr>
-                            <?php ;}?>"
+                            <?php ;}?>
                     </tbody>
                 </table>
             </div>
