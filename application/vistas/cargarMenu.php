@@ -100,8 +100,9 @@
                                 </form>
                                 <td>
                                    <form action="<?php echo $ABM_MENU_HOST_DEL; ?>" method="post">
-                                   <input type="hidden" name="idMenu"  value=<?php echo $row['idMenu'];?>">
-                                   <input type="submit" name="" class="btn btn-danger btn-mg btn-block" value="Eliminar">
+                                   <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
+                                   <input type="submit" name="" class="btn btn-danger btn-mg btn-block"
+                                    value="Eliminar"  data-toggle="modal" data-target="#confirm-delete">
                                 </td>
                                 </form>
                             </tr>
