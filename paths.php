@@ -29,7 +29,7 @@
     // TODAS LAS RUTAS DE LOS CONTROLADORES DENTRO DE CONTROLADORES
     $ABM_MENU_HOST_ADD = "http://localhost/application/abm/ABMMenuAdd.php";
     $ABM_MENU_HOST_MOD = "http://localhost/application/abm/ABMMenuMod.php";
-    $ABM_MENU_HOST_DEL = "http://localhost/application/abm/ABMMenuDel.php?id=idMenu";
+    $ABM_MENU_HOST_DEL = "http://localhost/application/abm/ABMMenuDel.php";
     $ABM_REGISTRO_HOST_ADD = "http://localhost/application/abm/ABMRegistroAdd.php";
 
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
@@ -44,6 +44,7 @@
 
     $AGREGAR_MENU_HOST = "http://localhost/application/vistas/agregarMenu.php";
     $MODIFICAR_MENU_HOST = "http://localhost/application/vistas/modificarMenu.php";
+    $CARGAR_MENU = "http://localhost/application/vistas/cargarMenu.php";
     //$ELIMINAR_MENU_HOST = "http://localhost/application/vistas/eliminarMenu.php";
 
 ?>

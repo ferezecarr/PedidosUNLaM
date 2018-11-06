@@ -1,6 +1,22 @@
 <?php
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
+    require_once $CONEXION_DIR;
+
+    $conexion= new Conexion();
+
+    $where = "";
+    
+    if(!empty($_POST))
+    {
+        $valor = $_POST['idMenu'];
+        if(!empty($valor)){
+            $where = "WHERE idMenu LIKE '%$valor'";
+        }
+    }
+    $sql = "SELECT * FROM menu $where";
+    $resultado = $conexion->query($sql);
+
 
 ?>
 
@@ -39,25 +55,34 @@
                     Modificar Menú
                 </div>
                 <div class="card-body" style="">
+                    <?php 
+                    $row = $resultado->fetch_array(MYSQLI_ASSOC)  ?>
                     <form action="<?php echo $ABM_MENU_HOST_MOD; ?>" method="post">
                         <div class="form-group">
+                            <input type="hidden" name="idMenu" value="<?php echo $row['idMenu'];?>"">
+
                             <label for="titulo">Título:</label>
-                            <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo">
+                            <input type="text" name="titulo" id="titulo" class="form-control" value="<?php echo $row['titulo'];?>">
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
-                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion" placeholder="Escriba su descripcion"></textarea>
+                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion" value="<?php echo $row['descripcion'];?>"></textarea>
                         </div>
+
                         <div class="form-group">
                             <label for="precio">Precio:</label>
-                            <input type="number" class="form-control" name="precio" id="precio" placeholder="Escriba su precio">
+                            <input type="number" class="form-control" name="precio" id="precio" value="<?php echo $row['precio'];?>">
                         </div>
+
                         <div class="form-group">
-                            <input type="file" class="form-control-file border">
+                            <input type="file" class="form-control-file border" value="<?php echo $row['archivo'];?>">
+                            >
+                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">>
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
+                    <?php ;?>"
                 </div>
             </div>
         </div>
