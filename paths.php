@@ -15,6 +15,7 @@
     $NAVBAR_1_DIR = $INC_DIR . "navbar1.php";
     $NAVBAR_2_DIR = $INC_DIR . "navbar2.php";
     $NAVBAR_3_DIR = $INC_DIR . "navbar3.php";
+    $NAVBAR_4_DIR = $INC_DIR . "navbar4.php";
    
     $INDEX_HOST = "http://localhost/application/vistas/index.php";
 
@@ -41,7 +42,8 @@
     $PANEL_COMERCIO_HOST = "http://localhost/application/vistas/comercio.php";
     $PANEL_CLIENTE_HOST = "http://localhost/application/vistas/cliente.php";
     $PANEL_DELIVERY_HOST = "http://localhost/application/vistas/delivery.php";
-
+    $PANEL_ADMINISTRADOR_HOST = "http://localhost/application/vistas/administrador.php";
+    
     $AGREGAR_MENU_HOST = "http://localhost/application/vistas/agregarMenu.php";
     $MODIFICAR_MENU_HOST = "http://localhost/application/vistas/modificarMenu.php";
     $CARGAR_MENU = "http://localhost/application/vistas/cargarMenu.php";
