@@ -77,7 +77,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Menu</th>
-                            <th>Descripción</th>
                             <th>Precio</th>
                             <th>Modificar</th>
                             <th>Eliminar</th>
@@ -91,31 +90,30 @@
                             <tr>
                                 <td><?php echo $row['idMenu']; ?></td>
                                 <td><?php echo $row['titulo']; ?></td>
-                                <td><?php echo $row['descripcion']; ?></td>
                                 <td><?php echo $row['precio']; ?></td>
 
              
                                     <td>
                                         <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
-                                        <button type="submit" name="modificar" class="btn btn-success">Modificar</button>
+                                        <input type="submit" name="" class="btn btn-success btn-mg btn-block" value="Modificar">
                                     </td>
                                 </form>
                                 <td>
                                    <form action="<?php echo $ABM_MENU_HOST_DEL; ?>" method="post">
                                    <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
-                                   <button type="submit" name="eliminar"  class="btn btn-danger"
-                                      data-toggle="modal" data-target="#confirm-delete">Eliminar</button>
+                                   <input type="submit" name="" class="btn btn-danger btn-mg btn-block"
+                                    value="Eliminar"  data-toggle="modal" data-target="#confirm-delete">
+                                   </form>
                                 </td>
-                                </form>
                             </tr>
-                            <?php ;}?>
+                            <?php ;}?>"
                     </tbody>
                 </table>
             </div>
         </div>
         
         <!-- Modal -->
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     
@@ -137,11 +135,20 @@
         </div>
      </div>
         <script>
-            $('#confirm-delete').on('show.bs.modal', function(e) {
-                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-                
-                $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
-            });
+         $(document).ready(function()
+    {
+    $('#confirm-delete').on('show.bs.modal',function(){
+            $('.btn-ok').click(function(){
+            console.log("Llamamos a la función de eliminación");
+        });
+    });
+            
+        $('#go').click(function()
+        {
+            $('#confirm-delete').modal('show');
+           
+        })
+    });
         </script>   
         
 </body>
