@@ -77,6 +77,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Menu</th>
+                            <th>Descripción</th>
                             <th>Precio</th>
                             <th>Modificar</th>
                             <th>Eliminar</th>
@@ -90,6 +91,7 @@
                             <tr>
                                 <td><?php echo $row['idMenu']; ?></td>
                                 <td><?php echo $row['titulo']; ?></td>
+                                <td><?php echo $row['descripcion']; ?></td>
                                 <td><?php echo $row['precio']; ?></td>
 
              

@@ -20,7 +20,6 @@ $resultado=$statement->get_result();
 $resultado = $statement->affected_rows;
 
 
-
 if($resultado >0)
 
 {

@@ -76,13 +76,12 @@
 
                         <div class="form-group">
                             <input type="file" class="form-control-file border" value="<?php echo $row['archivo'];?>">
-                            >
-                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">>
+                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
-                    <?php ;?>"
+                    <?php ?>"
                 </div>
             </div>
         </div>
