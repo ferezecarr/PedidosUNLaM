@@ -47,15 +47,17 @@
                         <div class="form-group">
                             <label for="email">E-mail:</label>
                             <input type="email" name="email" id="email" class="form-control"  placeholder="Escriba su email">
+                            <div id="mensajeEmail" class="mensajeError">Email inválido , ingrese nuevamente</div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password">
+                            <div id="mensajePass" class="mensajeError">Password inválida , ingrese nuevamente</div>
                         <br>
                         <div class="form-group">
                             <input type="checkbox" name="recordarme" id="recordarme"> Recordarme
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Ingresar</button>
+                        <button type="submit" id="ingresar" class="btn btn-success btn-lg btn-block">Ingresar</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
                 </div>
