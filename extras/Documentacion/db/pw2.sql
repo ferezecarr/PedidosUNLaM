@@ -14,7 +14,7 @@ CREATE TABLE Usuario(
     email VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
-    numero VARCHAR(50) NOT NULL,
+    telefono VARCHAR(50) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     idRol INT,
     PRIMARY KEY(idUsuario,idRol),
