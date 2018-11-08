@@ -89,7 +89,7 @@ INSERT INTO Rol(idRol,tipoRol) VALUES(1,"Cliente"),
                                     (3,"Delivery"),
                                     (4,"Administrador");
 
-INSERT INTO Usuario(idUsuario,email,password,nombre,apellido,direccion,numero,categoria,idRol) 
+INSERT INTO Usuario(idUsuario,email,password,nombre,apellido,direccion,telefono,categoria,idRol) 
     VALUES(1,'cliente@cliente.com','cliente','Pepe','Pepe','Av.Peron 4351','44506789','Cliente',1),
         (2,'comercio@comercio.com','comercio','Juan','Juan','Av.Saenz 789','44509875','Comercio',2),
         (3,'delivery@delivery.com','delivery','Jose','Jose','Av.Rivadavia 8765','44890765','Delivery',3),
