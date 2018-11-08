@@ -35,7 +35,7 @@ CREATE TABLE Menu(
     titulo VARCHAR(200) NOT NULL,
     descripcion VARCHAR(200) NOT NULL,
     precio FLOAT NOT NULL,
-    archivo BLOB NOT NULL, 
+    archivo varchar(100) NOT NULL, 
     idUsuario INT,
     PRIMARY KEY(idMenu,idUsuario),
     FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
