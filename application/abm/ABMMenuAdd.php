@@ -4,56 +4,63 @@ require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 require_once $CONEXION_DIR;
  
  
-$id;
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
-$archivo = $_POST['file'];
-$idUsuario;
-$email;
-$nombre;
-$direccion;
-$numero;
+$idUsuario=3;
  
 $conexion= new Conexion();
-
+/*
 $queryUsuario = "SELECT U.idUsuario , U.email , U.nombre , U.direccion , U.numero
                  FROM Usuario AS U
                  WHERE U.idUsuario = ?";
 $statement = $conexion->prepare($queryUsuario);
 $statement->bind_param('sssss',$idUsuario,$email,$nombre,$direccion,$numero);
 $statement->execute();
-$statement->close();
- 
+$statement->close();*/
 
-$idUsuario = $conexion->insert_id;
-$query = "INSERT INTO Menu(id,titulo,descripcion,precio,archivo,idUsuario) VALUES (?,?,?,?,?,?)";
+$permitidos= array("image/jpg","image/jpeg","image/gif","image/png" );/*tipo de imagenes permitidas*/
+$limite_kb=200;/*limite de tamaño que podemos subir al servidor*/
+
+if($_FILES["imagen"]["error"] > 0) {
+    echo "Error : " . $_FILES["file"]["error"] . "<br>";
+    }
+    else{
+
+         if(file_exists("../imagenes/".$_FILES["imagen"]["name"]))
+            {    echo "el archivo ya existe";
+               }
+              else
+              {
+                     if(in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size']<= $limite_kb*1024) 
+                       {
+
+                           $ruta="../imagenes/".$_FILES["imagen"]["name"];/*ruta en donde se va a guardar la imagen*/
+                            move_uploaded_file($_FILES["imagen"]["tmp_name"],$ruta);/*movemos la imagen del archivo temporal a la ruta especificada*/
+                            $archivo=$_FILES["imagen"]["name"];/*lo que se guarda en la base de datos*/
+                        }
+                        else
+                        {
+                            echo "archivo no permitido";
+                        }
+                }
+        }        
+
+
+$query = "INSERT INTO menu(titulo,descripcion,precio,archivo,idUsuario) VALUES (?,?,?,?,?)";
 $statement = $conexion->prepare($query);
-$statement->bind_param('sssssi',$id,$titulo,$descripcion,$precio,$archivo,$idUsuario);
+$statement->bind_param('ssssi',$titulo,$descripcion,$precio,$archivo,$idUsuario);
 $statement->execute();
 $resultado=$statement->get_result();
 $resultado = $statement->affected_rows;
 
-if($_FILES["file"]["error"] > 0) {
-    echo "Error : " . $_FILES["file"]["error"] . "<br>";
-} else {
-    echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-    echo "Type: " . $_FILES["file"]["type"] . "<br />";
-    echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-    echo "Stored in: " . $_FILES["file"]["tmp_name"];
-    if(file_exists("upload/" . $_FILES["file"]["name"])) {
-        echo $_FILES["file"]["name"] . " ya existe. ";
-    } else {
-        move_uploaded_file($_FILES["file"]["tmp_name"],
-        "upload/" . $_FILES["file"]["name"]);
-        echo "Almacenado en: " . "upload/" . $_FILES["file"]["name"];
-    }
-}
+
 $statement->close();
 
 if($resultado > 0) {
 
     echo 'Registro guardado';
+    header("Location: " .$CARGAR_MENU );
 } else {
     echo 'No se guardo';
 }

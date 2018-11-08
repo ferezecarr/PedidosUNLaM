@@ -39,10 +39,10 @@
                     Agregar Menú
                 </div>
                 <div class="card-body" style="">
-                    <form action="<?php echo $ABM_MENU_HOST_ADD; ?>" method="post">
+                    <form action="<?php echo $ABM_MENU_HOST_ADD; ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label for="titulo">Título:</label>
-                            <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo">
+                            <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo" required>
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-group">
                             <label for="archivo">Seleccione un archivo:</label>
-                            <input type="file" name="file" class="form-control-file border">
+                            <input type="file" name="imagen" accept="image/*" class="form-control-file border">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Agregar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>

@@ -11,7 +11,7 @@
     {
         $valor = $_POST['idMenu'];
         if(!empty($valor)){
-            $where = "WHERE idMenu LIKE '%$valor'";
+            $where = "WHERE idMenu ='$valor'";
         }
     }
     $sql = "SELECT * FROM menu $where";
@@ -56,8 +56,8 @@
                 </div>
                 <div class="card-body" style="">
                     <?php 
-                    $row = $resultado->fetch_array(MYSQLI_ASSOC)  ?>
-                    <form action="<?php echo $ABM_MENU_HOST_MOD; ?>" method="post">
+                          $row = $resultado->fetch_array(MYSQLI_ASSOC)  ?>
+                    <form action="<?php echo $ABM_MENU_HOST_MOD; ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <input type="hidden" name="idMenu" value="<?php echo $row['idMenu'];?>"">
 
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
-                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion" value="<?php echo $row['descripcion'];?>"></textarea>
+                            <textarea class="form-control" name="descripcion" rows="5" id="descripcion"><?php echo $row['descripcion'];?></textarea>
                         </div>
 
                         <div class="form-group">
@@ -75,13 +75,17 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="file" class="form-control-file border" value="<?php echo $row['archivo'];?>">
-                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">
+                            <label for="archivo">Modificar Foto:</label>
+                            <input type="file" name="imagen" accept="image/*" class="form-control-file border">
+                              <img src="../imagenes/<?php echo $row['archivo'];?>">             
+
+                        </div>
+                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">>
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
-                    <?php ?>"
+                    <?php ;?>"
                 </div>
             </div>
         </div>
