@@ -69,8 +69,8 @@
                             <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Escriba su dirección">
                         </div>
                         <div class="form-group">
-                            <label for="numero">Número:</label>
-                            <input type="number" name="numero" id="numero" class="form-control" placeholder="Escriba su número">
+                            <label for="telefono">Telefono:</label>
+                            <input type="number" name="telefono" id="telefono" class="form-control" placeholder="Escriba su telefono">
                         </div>
                         <div class="form-group">
                             <label for="categoria">Categoria:</label>

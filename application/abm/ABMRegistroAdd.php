@@ -14,7 +14,7 @@ $password_confirm = $_POST['password_confirm'];
 $nombre   = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $direccion = $_POST['direccion'];
-$numero   = $_POST['numero'];
+$telefono   = $_POST['telefono'];
 $idRol    = $_POST['categoria'];
 
     switch ($idRol) {
@@ -78,9 +78,9 @@ $idRol    = $_POST['categoria'];
  
              $conexion= new Conexion();
  
-            $query = "INSERT INTO usuario(nombre,apellido,email,password,direccion,numero,categoria,idRol) VALUES (?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO usuario(nombre,apellido,email,password,direccion,telefono,categoria,idRol) VALUES (?,?,?,?,?,?,?,?)";
             $statement = $conexion->prepare($query);
-            $statement->bind_param('sssssssi',$nombre,$apellido,$email,$password_sha1,$direccion,$numero,$categoria,$idRol);
+            $statement->bind_param('sssssssi',$nombre,$apellido,$email,$password_sha1,$direccion,$telefono,$categoria,$idRol);
             $statement->execute();
             $resultado=$statement->get_result();
             $resultado = $statement->affected_rows;

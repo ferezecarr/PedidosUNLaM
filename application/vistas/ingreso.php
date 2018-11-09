@@ -2,6 +2,16 @@
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 
+    session_start();
+    /*Si tiene session iniciada no muestra el login y te manda a la pagina correspndiente*/
+      if(isset($_SESSION['Comercio'])){
+        header("Location:comercio.php");}
+             if(isset($_SESSION['Cliente'])){
+                header("Location:cliente.php");}
+                    if(isset($_SESSION['Delivery'])){
+                        header("Location:delivery.php");}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -46,19 +56,19 @@
                     <form action="<?php echo $VALIDAR_LOGIN_HOST ?>" method="post">
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="email" name="email" id="email" class="form-control"  placeholder="Escriba su email">
+                            <input type="email" name="email" id="email" class="form-control"  placeholder="Escriba su email" required>
                             <div id="mensajeEmail" class="mensajeError">Email inválido , ingrese nuevamente</div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password" required>
                             <div id="mensajePass" class="mensajeError">Password inválida , ingrese nuevamente</div>
                         <br>
                         <div class="form-group">
                             <input type="checkbox" name="recordarme" id="recordarme"> Recordarme
                         </div>
                         <button type="submit" id="ingresar" class="btn btn-success btn-lg btn-block">Ingresar</button>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
+                        <button type="reset" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
                 </div>
             </div>

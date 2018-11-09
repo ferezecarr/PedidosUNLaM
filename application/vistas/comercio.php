@@ -1,6 +1,22 @@
 <?php
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
+    require_once $CONEXION_DIR;
+
+
+    session_start();
+    if(!isset($_SESSION['Comercio']))/*verificar que es comercio*/
+        { header("Location :" . $INDEX_HOST);}
+
+    $idUsuario=$_SESSION['idUsuario'];
+    $tipoRol  = $_SESSION['Comercio'];
+
+    $conexion= new Conexion();
+    $query="SELECT * FROM usuario WHERE idUsuario=$idUsuario";
+    $resultado = $conexion->query($query);
+    $row=$resultado->fetch_assoc();
+
+
 
 ?>
 
@@ -36,7 +52,8 @@
 
             <div class="card" style="">
                 <div class="card-header">
-                    Mi Perfil
+                  Mi Perfil  : <h5><?php echo 'Bienvenid@ '.utf8_decode($row['nombre']); ?></h5>
+                   <?php echo $tipoRol; ?>
                 </div>
                 <div class="card-body" style="">
                     <form action="" method="post">
