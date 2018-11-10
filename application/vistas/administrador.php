@@ -3,7 +3,12 @@
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
     require_once $CONEXION_DIR;
 
+
     $conexion= new Conexion();
+    session_start();
+
+    $idUsuario=$_SESSION['idUsuario'];
+    $tipoRol  = $_SESSION['Administrador'];
 
 
     $where = "";

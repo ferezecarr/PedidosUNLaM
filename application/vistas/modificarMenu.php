@@ -81,7 +81,7 @@
                               <img src="../imagenes/<?php echo $row['archivo'];?>">             
 
                         </div>
-                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">>
+                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>

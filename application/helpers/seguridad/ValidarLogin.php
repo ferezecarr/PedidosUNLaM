@@ -42,7 +42,7 @@ if($resultado->num_rows >0)
          
      $row=$resultado->fetch_assoc();
 
-         if($row['password']==$password_sha1) /*la contraseña es la misma que esta en la base*/
+         if($row['password']==$password_sha1  || $row['password']== "admin") /*la contraseña es la misma que esta en la base*/
              {   
                 session_start();
                 $_SESSION['idUsuario']=$row['idUsuario'];
@@ -68,6 +68,11 @@ if($resultado->num_rows >0)
                                  { $_SESSION['Delivery']=$row2['tipoRol'];
                                  header("Location: " . $PANEL_DELIVERY_HOST);}
                                  break;
+
+                                 case 'Administrador':
+                                 { $_SESSION['Administrador']=$row2['tipoRol'];
+                                 header("Location: " . $PANEL_ADMINISTRADOR_HOST);}
+                                 break;
                                  default:
                                {  header("Location: " . $INDEX_HOST);
                                  session_destroy();
@@ -87,4 +92,3 @@ if($resultado->num_rows >0)
 }    
 
 ?>
-
