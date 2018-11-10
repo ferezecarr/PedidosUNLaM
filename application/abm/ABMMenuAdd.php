@@ -7,7 +7,8 @@ require_once $CONEXION_DIR;
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
-$idUsuario=3;
+$idUsuario=$_POST['idUsuario'];
+
  
 $conexion= new Conexion();
 /*

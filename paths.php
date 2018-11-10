@@ -34,9 +34,10 @@
     $ABM_REGISTRO_HOST_ADD = "http://localhost/application/abm/ABMRegistroAdd.php";
 
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
-    $SESION_OUT_HOST = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
-	$SESION_IN_HOST = "http://localhost/application/helpers/seguridad/sesiones/sesion.php";
+    $SESION_OUT_HOST    = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
+	$SESION_IN_HOST     = "http://localhost/application/helpers/seguridad/sesiones/sesion.php";
     $VALIDAR_LOGIN_HOST = "http://localhost/application/helpers/seguridad/ValidarLogin.php";
+
     
 
     $PANEL_COMERCIO_HOST = "http://localhost/application/vistas/comercio.php";

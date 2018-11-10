@@ -2,6 +2,9 @@
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 
+    $idUsuario=$_POST['idUsuario'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +44,9 @@
                 <div class="card-body" style="">
                     <form action="<?php echo $ABM_MENU_HOST_ADD; ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
+
+                            <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario?>">
+                            
                             <label for="titulo">Título:</label>
                             <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo" required>
                         </div>

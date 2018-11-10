@@ -4,7 +4,9 @@
     require_once $CONEXION_DIR;
 
     $conexion= new Conexion();
+    session_start();
 
+    $idUsuario=$_SESSION['idUsuario'];
 
     $where = "";
     
@@ -55,7 +57,11 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <a href="<?php echo $AGREGAR_MENU_HOST; ?>" class="btn btn-success btn-lg btn-block">Agregar Menu</a>
+                     <form action="<?php echo $AGREGAR_MENU_HOST; ?>" method="post">
+                                   <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario?>">
+                                   <input type="submit" name="" class="btn btn-success btn-lg btn-block" value="Agregar Menu">
+                                   </form>
+                    <!--<a href="<?php /*echo*/ $AGREGAR_MENU_HOST; ?>" class="btn btn-success btn-lg btn-block">Agregar Menu</a>-->
                 </div>
                 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="form-group">
