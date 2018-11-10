@@ -14,7 +14,7 @@ CREATE TABLE Usuario(
     email VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     direccion VARCHAR(50) NOT NULL,
-    numero VARCHAR(50) NOT NULL,
+    telefono VARCHAR(50) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     idRol INT,
     PRIMARY KEY(idUsuario,idRol),
@@ -35,7 +35,7 @@ CREATE TABLE Menu(
     titulo VARCHAR(200) NOT NULL,
     descripcion VARCHAR(200) NOT NULL,
     precio FLOAT NOT NULL,
-    archivo BLOB NOT NULL, 
+    archivo varchar(100) NOT NULL, 
     idUsuario INT,
     PRIMARY KEY(idMenu,idUsuario),
     FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
@@ -89,7 +89,7 @@ INSERT INTO Rol(idRol,tipoRol) VALUES(1,"Cliente"),
                                     (3,"Delivery"),
                                     (4,"Administrador");
 
-INSERT INTO Usuario(idUsuario,email,password,nombre,apellido,direccion,numero,categoria,idRol) 
+INSERT INTO Usuario(idUsuario,email,password,nombre,apellido,direccion,telefono,categoria,idRol) 
     VALUES(1,'cliente@cliente.com','cliente','Pepe','Pepe','Av.Peron 4351','44506789','Cliente',1),
         (2,'comercio@comercio.com','comercio','Juan','Juan','Av.Saenz 789','44509875','Comercio',2),
         (3,'delivery@delivery.com','delivery','Jose','Jose','Av.Rivadavia 8765','44890765','Delivery',3),
