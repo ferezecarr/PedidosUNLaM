@@ -58,7 +58,7 @@
                 <div class="card-body" style="">
                     <?php 
                           $row = $resultado->fetch_array(MYSQLI_ASSOC)  ?>
-                    <form action="<?php echo $ABM_MENU_HOST_MOD; ?>" enctype="multipart/form-data" method="post">
+                    <form action="<?php echo  $ABM_COMERCIO_MOD; ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <input type="hidden" name="idMenu" value="<?php echo $row['idMenu'];?>"">
 
@@ -81,7 +81,7 @@
                               <img src="../imagenes/<?php echo $row['archivo'];?>">             
 
                         </div>
-                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">>
+                            <input type="hidden" name="idUsuario" value="<?php echo $row['idUsuario'];?>">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar Menú</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>

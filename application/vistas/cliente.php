@@ -51,7 +51,7 @@
 
             <div class="card" style="">
                 <div class="card-header">
-                    Mi Perfil: : <h5><?php echo 'Bienvenid@ '.utf8_decode($row['nombre']); ?></h5>
+                    Mi Perfil:  <h5><?php echo 'Bienvenid@ '.utf8_decode($row['nombre']); ?></h5>
                    <?php echo $tipoRol; ?>
                 </div>
                 <div class="card-body" style="">

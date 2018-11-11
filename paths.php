@@ -33,6 +33,9 @@
     $ABM_MENU_HOST_DEL = "http://localhost/application/abm/ABMMenuDel.php";
     $ABM_REGISTRO_HOST_ADD = "http://localhost/application/abm/ABMRegistroAdd.php";
 
+    $ABM_COMERCIO_ADD = "http://localhost/application/abm/ABMComercioAdd.php";
+    $ABM_COMERCIO_MOD = "http://localhost/application/abm/ABMComercioMod.php";
+
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST    = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
 	$SESION_IN_HOST     = "http://localhost/application/helpers/seguridad/sesiones/sesion.php";
@@ -48,6 +51,10 @@
     $AGREGAR_MENU_HOST = "http://localhost/application/vistas/agregarMenu.php";
     $MODIFICAR_MENU_HOST = "http://localhost/application/vistas/modificarMenu.php";
     $CARGAR_MENU = "http://localhost/application/vistas/cargarMenu.php";
-    //$ELIMINAR_MENU_HOST = "http://localhost/application/vistas/eliminarMenu.php";
+    //$ELIMINAR_MENU_HOST = "http://localhost/application/vistas/eliminarMenu.php
+
+      $AGREGAR_COMERCIO_HOST = "http://localhost/application/vistas/agregaComercio.php";
+      $MODIFICAR_COMERCIO_HOST = "http://localhost/application/vistas/modificaComercio.php";
+
 
 ?>
