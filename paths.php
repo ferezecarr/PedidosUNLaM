@@ -34,10 +34,8 @@
     $ABM_REGISTRO_HOST_ADD = "http://localhost/application/abm/ABMRegistroAdd.php";
 
     $ABM_COMERCIO_ADD = "http://localhost/application/abm/ABMComercioAdd.php";
-<<<<<<< HEAD
     $ABM_COMERCIO_MOD = "http://localhost/application/abm/ABMComercioMod.php";
-=======
->>>>>>> e3f10033323c91ad4f3c762c91cfe55965f79224
+    $ABM_COMERCIO_DEL = "http://localhost/application/abm/ABMComercioDel.php";
 
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST    = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
