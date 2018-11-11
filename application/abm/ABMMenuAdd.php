@@ -2,7 +2,7 @@
 
 require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 require_once $CONEXION_DIR;
- 
+
  
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];

@@ -5,8 +5,8 @@
 
 
     session_start();
-    if(!isset($_SESSION['Comercio']))/*verificar que es comercio*/
-        { header("Location :" . $INDEX_HOST);}
+    /*if(!isset($_SESSION['Comercio']))/*verificar que es comercio*/
+        /*{ header("Location :" . $INDEX_HOST);}*/
 
     $idUsuario=$_SESSION['idUsuario'];
     $tipoRol  = $_SESSION['Comercio'];
@@ -56,32 +56,35 @@
                    <?php echo $tipoRol; ?>
                 </div>
                 <div class="card-body" style="">
-                    <form action="" method="post">
+                    <form action="<?php echo  $ABM_COMERCIO_ADD ;?>" method="post">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Escriba su nombre">
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Escriba el nombre del Comercio">
+                            </div>
+                        <div>
+                             <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario?>">
                         </div>
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <label for="medios-de-pagos">Medios de Pagos:</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Débito Crédito VISA
+                                <input class="form-check-input" type="checkbox" name="mediopago[]" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1" value="Débito Crédito VISA/Mastercard">
+                                    Débito Crédito VISA/Mastercard
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" name="mediopago[]" id="defaultCheck1" value="Efectivo">
                                 <label class="form-check-label" for="defaultCheck1">
-                                    Crédito Mastercard
+                                 Efectivo
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Crédito Cabal
+                                <input class="form-check-input" type="checkbox" name="mediopago[]" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1" value="Mercado Pago">
+                                Mercado Pago
                                 </label>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="direccion">Dirección:</label>
                             <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Escriba su direccion">
@@ -89,12 +92,12 @@
                         <div class="form-group">
                             <label for="horarios-de-atencion">Horarios de Atención:</label>
                             <div class="list-group">
-                                <a href="#" class="list-group-item list-group-item-action list-group-item-success">Lunes a Viernes de 8:00 a 20:00 hs</a>
-                                <a href="#" class="list-group-item list-group-item-action list-group-item-success">Sabados de 8:00 a 00:00 hs</a>
-                                <a href="#" class="list-group-item list-group-item-action list-group-item-success">Domingos y Feriados de 10:00 a 23:00 hs</a>
+                                <input type="text"  class="list-group-item list-group-item-action list-group-item-success" name="horario1" value="Lunes a Viernes de 8:00 a 20:00 hs">
+                                <input type="text"  class="list-group-item list-group-item-action list-group-item-success" name="horario2" value="Sabados de 8:00 a 00:00 hs">
+                                <input type="text" class="list-group-item list-group-item-action list-group-item-success" name="horario3" value="Domingos y Feriados de 10:00 a 23:00 hs">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar</button>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Agregar Comercio</button>
                         <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
                 </div>

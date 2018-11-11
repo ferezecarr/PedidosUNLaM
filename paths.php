@@ -33,6 +33,8 @@
     $ABM_MENU_HOST_DEL = "http://localhost/application/abm/ABMMenuDel.php";
     $ABM_REGISTRO_HOST_ADD = "http://localhost/application/abm/ABMRegistroAdd.php";
 
+    $ABM_COMERCIO_ADD = "http://localhost/application/abm/ABMComercioAdd.php";
+
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST    = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
 	$SESION_IN_HOST     = "http://localhost/application/helpers/seguridad/sesiones/sesion.php";

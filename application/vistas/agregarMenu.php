@@ -1,4 +1,4 @@
-<?php
+l<?php
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
 

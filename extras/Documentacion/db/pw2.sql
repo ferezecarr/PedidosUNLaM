@@ -1,132 +1,403 @@
-CREATE DATABASE IF NOT EXISTS pw2;
-USE pw2;
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 10-11-2018 a las 19:48:51
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.10
 
-CREATE TABLE Rol(
-    idRol INT NOT NULL,
-    tipoRol VARCHAR(50) NOT NULL,
-    PRIMARY KEY(idRol)
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE Usuario(
-    idUsuario INT NOT NULL AUTO_INCREMENT,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    direccion VARCHAR(50) NOT NULL,
-    telefono VARCHAR(50) NOT NULL,
-    categoria VARCHAR(50) NOT NULL,
-    idRol INT,
-    PRIMARY KEY(idUsuario,idRol),
-    FOREIGN KEY(idRol) REFERENCES Rol(idRol) ON DELETE CASCADE ON UPDATE CASCADE
-);
 
-CREATE TABLE Login(
-    idLogin INT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    idUsuario INT,
-    PRIMARY KEY(idLogin,idUsuario),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE Menu(
-    idMenu INT NOT NULL AUTO_INCREMENT,
-    titulo VARCHAR(200) NOT NULL,
-    descripcion VARCHAR(200) NOT NULL,
-    precio FLOAT NOT NULL,
-    archivo varchar(100) NOT NULL, 
-    idUsuario INT,
-    PRIMARY KEY(idMenu,idUsuario),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
-);
+--
+-- Base de datos: `pw2`
+--
 
-CREATE TABLE Oferta(
-    idOferta INT NOT NULL AUTO_INCREMENT,
-    tipoOferta VARCHAR(50) NOT NULL,
-    idUsuario INT,
-    precio FLOAT,
-    PRIMARY KEY(idOferta,idUsuario),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
-);
+-- --------------------------------------------------------
 
-CREATE TABLE Pedido(
-    idPedido INT NOT NULL AUTO_INCREMENT,
-    tipoPedido VARCHAR(50) NOT NULL,
-    idMenu INT,
-    idUsuario INT,
-    PRIMARY KEY(idPedido,idMenu,idUsuario),
-    FOREIGN KEY(idMenu) REFERENCES Menu(idMenu) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
-);
+--
+-- Estructura de tabla para la tabla `comercio`
+--
 
-CREATE TABLE Entrega(
-    idEntrega INT NOT NULL AUTO_INCREMENT,
-    tipoEntrega VARCHAR(50) NOT NULL,
-    idUsuario INT,
-    PRIMARY KEY(idEntrega,idUsuario),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
-);
+CREATE TABLE `comercio` (
+  `idComercio` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `mediosPago` varchar(100) NOT NULL,
+  `horario1` varchar(100) NOT NULL,
+  `horario2` varchar(50) NOT NULL,
+  `horario3` varchar(50) NOT NULL,
+  `activo` int(2) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE Venta(
-    idVenta INT NOT NULL AUTO_INCREMENT,
-    idUsuario INT,
-    PRIMARY KEY(idVenta,idUsuario),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE
-);
+--
+-- Volcado de datos para la tabla `comercio`
+--
 
-CREATE TABLE Viaje(
-    idViaje INT NOT NULL AUTO_INCREMENT,
-    idUsuario INT,
-    idPedido INT,
-    PRIMARY KEY(idViaje,idUsuario,idPedido),
-    FOREIGN KEY(idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(idPedido) REFERENCES Pedido(idPedido) ON DELETE CASCADE ON UPDATE CASCADE
-);
+INSERT INTO `comercio` (`idComercio`, `nombre`, `direccion`, `mediosPago`, `horario1`, `horario2`, `horario3`, `activo`, `idUsuario`) VALUES
+(0, 'La cantina de al lado', 'Arieta 2016', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 5),
+(1, 'Queseria de mi sin ti', 'Sin corazon 125', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs\">', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 18);
 
-INSERT INTO Rol(idRol,tipoRol) VALUES(1,"Cliente"),
-                                    (2,"Comercio"),
-                                    (3,"Delivery"),
-                                    (4,"Administrador");
+-- --------------------------------------------------------
 
-INSERT INTO Usuario(idUsuario,email,password,nombre,apellido,direccion,telefono,categoria,idRol) 
-    VALUES(1,'cliente@cliente.com','cliente','Pepe','Pepe','Av.Peron 4351','44506789','Cliente',1),
-        (2,'comercio@comercio.com','comercio','Juan','Juan','Av.Saenz 789','44509875','Comercio',2),
-        (3,'delivery@delivery.com','delivery','Jose','Jose','Av.Rivadavia 8765','44890765','Delivery',3),
-        (4,'administrador@administrador.com','admin','Admin','Admin','Av.Administrador','44509876','Administrador',4);
+--
+-- Estructura de tabla para la tabla `entrega`
+--
 
-INSERT INTO Login(idLogin,email,password,idUsuario)
-    VALUES(1,'cliente@cliente.com','cliente',1),
-        (2,'comercio@comercio.com','comercio',2),
-        (3,'delivery@delivery.com','delivery',3),
-        (4,'administrador@administrador.com','administrador',4);
+CREATE TABLE `entrega` (
+  `idEntrega` int(11) NOT NULL,
+  `tipoEntrega` varchar(50) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO Menu(idMenu,titulo,descripcion,precio,idUsuario)
-    VALUES(1,'Milanesa con pure','Milanesa con pure',150.00,1),
-        (2,'Carne con papas al horno','Carne con papas al horno',200.00,2),
-        (3,'Ensalada Mixta','Ensalada Mixta',100.00,3);
+-- --------------------------------------------------------
 
-INSERT INTO Oferta(idOferta,tipoOferta,idUsuario,precio)
-    VALUES(1,'Bife de chorizo con papas + gaseosa',3,175.00),
-        (2,'Sopa de zapallo',2,70.00),
-        (3,'Sandwich de vacio',1,100.00);
+--
+-- Estructura de tabla para la tabla `login`
+--
 
-INSERT INTO Pedido(idPedido,tipoPedido,idMenu,idUsuario)
-    VALUES(1,'En Preparacion',1,1),
-        (2,'Enviado',2,2),
-        (3,'Entregado',3,3);
+CREATE TABLE `login` (
+  `idLogin` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO Entrega(idEntrega,tipoEntrega,idUsuario)
-    VALUES(1,'En Espera',1),
-        (2,'En Viaje',2),
-        (3,'Entregado',3);
+--
+-- Volcado de datos para la tabla `login`
+--
 
-INSERT INTO Venta(idVenta,idUsuario)
-    VALUES(1,1),
-        (2,2),
-        (3,3);
+INSERT INTO `login` (`idLogin`, `email`, `password`, `idUsuario`) VALUES
+(4, 'administrador@administrador.com', 'administrador', 4);
 
-INSERT INTO Viaje(idViaje,idUsuario,idPedido)
-    VALUES(1,1,1),
-        (2,2,2),
-        (3,3,3);
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menu`
+--
+
+CREATE TABLE `menu` (
+  `idMenu` int(11) NOT NULL,
+  `titulo` varchar(200) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `precio` float NOT NULL,
+  `archivo` varchar(100) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `menu`
+--
+
+INSERT INTO `menu` (`idMenu`, `titulo`, `descripcion`, `precio`, `archivo`, `idUsuario`) VALUES
+(4, 'Ensalada Mixta con frutas', 'Muchas frutas ', 125, 'frutas varias.jpg', 18),
+(5, 'Tacos con carne', 'tortillas de maiz con carne', 36, 'tacos.jpg', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `oferta`
+--
+
+CREATE TABLE `oferta` (
+  `idOferta` int(11) NOT NULL,
+  `tipoOferta` varchar(50) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `precio` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `idPedido` int(11) NOT NULL,
+  `tipoPedido` varchar(50) NOT NULL,
+  `idMenu` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `idRol` int(11) NOT NULL,
+  `tipoRol` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idRol`, `tipoRol`) VALUES
+(1, 'Cliente'),
+(2, 'Comercio'),
+(3, 'Delivery'),
+(4, 'Administrador');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idUsuario` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `telefono` varchar(50) NOT NULL,
+  `categoria` varchar(50) NOT NULL,
+  `idRol` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `categoria`, `idRol`) VALUES
+(4, 'Dios Admin', 'Admin', 'administrador@administrador.com', 'admin', 'Av.Administrador', '44509876', 'Administrador', 4),
+(5, 'Rodrigo', 'Gonzalez', 'comercio1@comercio.com', '592bd52a1a347976b32a561138c2cbc36d6cecd5', 'Arieta 2016', '11523647', 'Comercio', 2),
+(7, 'Melisa', 'Perez', 'cliente2@cliente.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Almafuerte', '116985472', 'Cliente', 1),
+(8, 'Leandro', 'Santoro', 'comercio3@comercio.com', '592bd52a1a347976b32a561138c2cbc36d6cecd5', 'Peru 256', '11456852', 'Comercio', 2),
+(10, 'Luisa', 'Benitez', 'luisamensajes@hotmail.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Soberania Nacional 5639', '11698452', 'Cliente', 1),
+(15, 'Repartidor', 'Gomez', 'delivery2@delivery.com', '391cb1e07c5f1f4e3000e0fd125802c7a9b1dc96', 'Tucasa 125', '11456789', 'Delivery', 3),
+(17, 'Pepe', 'Cibrian', 'cliente@cliente.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Tucasa 125', '11256347', 'Cliente', 1),
+(18, 'Juan', 'Juancho', 'comercio@comercio.com', '592bd52a1a347976b32a561138c2cbc36d6cecd5', 'Almafuerte 123', '11245789', 'Comercio', 2),
+(19, 'Jose', 'Josesito', 'delivery@delivery.com', '391cb1e07c5f1f4e3000e0fd125802c7a9b1dc96', 'micasa 123', '11256478', 'Delivery', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `venta`
+--
+
+CREATE TABLE `venta` (
+  `idVenta` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `viaje`
+--
+
+CREATE TABLE `viaje` (
+  `idViaje` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idPedido` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `comercio`
+--
+ALTER TABLE `comercio`
+  ADD PRIMARY KEY (`idComercio`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  ADD PRIMARY KEY (`idEntrega`,`idUsuario`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`idLogin`,`idUsuario`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`idMenu`,`idUsuario`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `oferta`
+--
+ALTER TABLE `oferta`
+  ADD PRIMARY KEY (`idOferta`,`idUsuario`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`idPedido`,`idMenu`,`idUsuario`),
+  ADD KEY `idMenu` (`idMenu`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`idRol`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`,`idRol`),
+  ADD KEY `idRol` (`idRol`);
+
+--
+-- Indices de la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD PRIMARY KEY (`idVenta`,`idUsuario`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
+-- Indices de la tabla `viaje`
+--
+ALTER TABLE `viaje`
+  ADD PRIMARY KEY (`idViaje`,`idUsuario`,`idPedido`),
+  ADD KEY `idUsuario` (`idUsuario`),
+  ADD KEY `idPedido` (`idPedido`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  MODIFY `idEntrega` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `login`
+--
+ALTER TABLE `login`
+  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `idMenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `oferta`
+--
+ALTER TABLE `oferta`
+  MODIFY `idOferta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `venta`
+--
+ALTER TABLE `venta`
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `viaje`
+--
+ALTER TABLE `viaje`
+  MODIFY `idViaje` int(11) NOT NULL AUTO_INCREMENT;
+
+  --
+ALTER TABLE `comercio`
+  MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `comercio`
+--
+ALTER TABLE `comercio`
+  ADD CONSTRAINT `comercio_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  ADD CONSTRAINT `entrega_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `login`
+--
+ALTER TABLE `login`
+  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `menu`
+--
+ALTER TABLE `menu`
+  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `oferta`
+--
+ALTER TABLE `oferta`
+  ADD CONSTRAINT `oferta_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idMenu`) REFERENCES `menu` (`idMenu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `viaje`
+--
+ALTER TABLE `viaje`
+  ADD CONSTRAINT `viaje_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `viaje_ibfk_2` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
