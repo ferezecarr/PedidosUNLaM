@@ -55,13 +55,13 @@
                     
                     <tbody>
                         <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
-                        <form action="<?php echo $MODIFICAR_MENU_HOST;?>" method="post">
+                        <form action="<?php echo $ACTIVAR;?>" method="post">
                             <tr>
                                 <td><?php echo $row['nombre']; ?></td>
                                 <td><?php echo $row['direccion']; ?></td>
                                 
                                 <td>     
-                                     <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
+                                     <input type="hidden" name="idComercio"  value="<?php echo $row['idComercio'];?>">
                                      <input type="submit" name="" class="btn btn-success btn-mg " value="Activar">
                                 </td>
                             </form>

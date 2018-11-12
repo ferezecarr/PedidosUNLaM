@@ -36,6 +36,7 @@
     $ABM_COMERCIO_ADD = "http://localhost/application/abm/ABMComercioAdd.php";
     $ABM_COMERCIO_MOD = "http://localhost/application/abm/ABMComercioMod.php";
     $ABM_COMERCIO_DEL = "http://localhost/application/abm/ABMComercioDel.php";
+    $ACTIVAR = "http://localhost/application/abm/activarComercio.php";
 
     // TODAS LAS RUTAS DE LAS SESIONES DENTRO DE SEGURIDAD DENTRO DE HELPERS
     $SESION_OUT_HOST    = "http://localhost/application/helpers/seguridad/sesiones/sesionOut.php";
