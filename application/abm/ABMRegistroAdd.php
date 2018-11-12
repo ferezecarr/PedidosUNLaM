@@ -88,9 +88,13 @@ $idRol    = $_POST['categoria'];
 
                 if($resultado > 0) {
 
+                
                      echo 'Registro guardado';
 
                      } else {
+                         echo "<script>
+                            alert('Error al guardar');
+                         </script>";
                     echo 'No se guardo';}
            
          }          

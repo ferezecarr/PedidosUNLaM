@@ -51,7 +51,7 @@
 
             <div class="card">
                 <div class="card-header">
-                 +  Agregar Pedido
+                 +  Comprar Pedido
                 </div>
                 <div class="table">
                 <table class="table table-striped">
@@ -87,6 +87,12 @@
                     </tbody>
                 </table>
             </div>
+            <span>Total: $
+                <?php
+                    echo $CARRITO;
+                ?>
+            
+            </span>
         </div>
     </div>
             

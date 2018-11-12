@@ -3,11 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
-<<<<<<< HEAD
+
 -- Tiempo de generación: 11-11-2018 a las 16:33:17
-=======
+
 -- Tiempo de generación: 10-11-2018 a las 19:48:51
->>>>>>> e3f10033323c91ad4f3c762c91cfe55965f79224
+
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -27,7 +27,9 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+drop database if exists pw2;
+create database if not exists pw2;
+use pw2;
 --
 -- Estructura de tabla para la tabla `comercio`
 --
@@ -41,7 +43,8 @@ CREATE TABLE `comercio` (
   `horario2` varchar(50) NOT NULL,
   `horario3` varchar(50) NOT NULL,
   `activo` int(2) NOT NULL,
-  `idUsuario` int(11) NOT NULL
+  `idUsuario` int(11) NOT NULL,
+  `idMenu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -50,13 +53,13 @@ CREATE TABLE `comercio` (
 
 INSERT INTO `comercio` (`idComercio`, `nombre`, `direccion`, `mediosPago`, `horario1`, `horario2`, `horario3`, `activo`, `idUsuario`) VALUES
 (0, 'La cantina de al lado', 'Arieta 2016', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 5),
-<<<<<<< HEAD
+
 (2, 'El ultimo pancho', 'Peru 325', 'Efectivo', 'de 15 a 20hs', 'de 20 a 23 hs', 'de 08 a 12 hs', 0, 18),
 (3, 'Pancho villa', 'Almafuerte 4523', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 11:00 a 23:00 hs', 0, 8),
 (7, 'Queseria de mi sin ti', 'Tucasa 125', 'Efectivo Mercado Pago', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 18);
-=======
-(1, 'Queseria de mi sin ti', 'Sin corazon 125', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs\">', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 18);
->>>>>>> e3f10033323c91ad4f3c762c91cfe55965f79224
+
+(1, 'Queseria de mi sin ti', 'Sin corazon 125', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 18);
+
 
 -- --------------------------------------------------------
 
@@ -296,15 +299,15 @@ ALTER TABLE `viaje`
 --
 
 --
-<<<<<<< HEAD
+
 -- AUTO_INCREMENT de la tabla `comercio`
 --
 ALTER TABLE `comercio`
   MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
-=======
->>>>>>> e3f10033323c91ad4f3c762c91cfe55965f79224
+
+
 -- AUTO_INCREMENT de la tabla `entrega`
 --
 ALTER TABLE `entrega`
@@ -352,13 +355,13 @@ ALTER TABLE `venta`
 ALTER TABLE `viaje`
   MODIFY `idViaje` int(11) NOT NULL AUTO_INCREMENT;
 
-<<<<<<< HEAD
-=======
+
+
   --
 ALTER TABLE `comercio`
   MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT;
 
->>>>>>> e3f10033323c91ad4f3c762c91cfe55965f79224
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -368,6 +371,9 @@ ALTER TABLE `comercio`
 --
 ALTER TABLE `comercio`
   ADD CONSTRAINT `comercio_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `comercio`
+  ADD CONSTRAINT `comercio_ibfk_1` FOREIGN KEY(`idMenu`) REFERENCES `menu` (`idMenu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `entrega`
