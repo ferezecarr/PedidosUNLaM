@@ -8,16 +8,24 @@
 
     $idUsuario=$_SESSION['idUsuario'];
 
-    $where = "";
+
+    $conexion= new Conexion();
+    $query="SELECT * FROM comercio WHERE idUsuario=$idUsuario";
+    $resultado2 = $conexion->query($query);
+    $row2=$resultado2->fetch_assoc();
+    $idComercio= $row2['idComercio'];
+
+
+/*$valor= "";
     
     if(!empty($_POST))
     {
         $valor = $_POST['campo'];
         if(!empty($valor)){
-            $where = "WHERE idMenu LIKE '%$valor'";
+            $valor;
         }
-    }
-    $sql = "SELECT * FROM menu $where";
+    }*/
+    $sql = "SELECT * FROM menu WHERE  idComercio = $idComercio ";
     $resultado = $conexion->query($sql);
 
 ?>
@@ -53,24 +61,25 @@
             </nav>    
         <div class="card" style="">
             <div class="card-header">
-                Cargar Menu
+                Cargar Menu <h5> <?php echo $row2['nombre']; ?></h5>
             </div>
             <div class="card-body">
                 <div class="form-group">
                      <form action="<?php echo $AGREGAR_MENU_HOST; ?>" method="post">
                                    <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario?>">
+                                   <input type="hidden" name="idComercio"  value="<?php echo $row2['idComercio'];?>">
                                    <input type="submit" name="" class="btn btn-success btn-lg btn-block" value="Agregar Menu">
                                    </form>
                     <!--<a href="<?php /*echo*/ $AGREGAR_MENU_HOST; ?>" class="btn btn-success btn-lg btn-block">Agregar Menu</a>-->
                 </div>
-                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+               <!-- <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="form-group">
                         <label for="idMenu">IdMenu:</label>
                         <input type="text" id="campo" name="campo" class="form-control" placeholder="Buscar">
                     </div>
                     <button type="submit" id="enviar" name="enviar" class="btn btn-success btn-lg btn-block">Buscar</button>    
                 </form>
-            </div>
+            </div>-->
 
             <div class="card-header">
                 Tabla de Menús
@@ -101,6 +110,8 @@
              
                                     <td>
                                         <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">
+                                         <input type="hidden" name="idComercio"  value="<?php echo $row2['idComercio'];?>">
+
                                         <input type="submit" name="" class="btn btn-success btn-mg btn-block" value="Modificar">
                                     </td>
                                 </form>

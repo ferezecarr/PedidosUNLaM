@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <form action="<?php echo $MODIFICAR_COMERCIO_HOST;?>" method="post">
-                            <input type="hidden" name="idMenu"  value="<?php echo $row['idMenu'];?>">    
+                            <input type="hidden" name="idUsuario"  value="<?php echo $row['idUsuario'];?>">    
                             <input type="submit" name="" class="btn btn-success btn-lg btn-block" value="Modificar Comercio">        
                         </form>
                     </div>

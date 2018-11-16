@@ -8,7 +8,7 @@ $id = $_POST['idMenu'];
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
-$idUsuario=$_POST['idUsuario'];
+$idComercio=$_POST['idComercio'];
 
 $conexion= new Conexion();
 
@@ -40,9 +40,9 @@ if($_FILES["imagen"]["error"] > 0) {
         }        
 
 
-$query = "UPDATE menu SET idMenu = ? , titulo = ? , descripcion = ? , precio = ? , archivo = ?, idUsuario = ? WHERE idMenu=$id ";
+$query = "UPDATE menu SET idMenu = ? , titulo = ? , descripcion = ? , precio = ? , archivo = ?, idComercio = ? WHERE idMenu=$id ";
 $statement = $conexion->prepare($query);
-$statement->bind_param('isssi',$id,$titulo,$descripcion,$precio,$archivo,$idUsuario);
+$statement->bind_param('isssi',$id,$titulo,$descripcion,$precio,$archivo,$idComercio);
 $statement->execute();
 $resultado=$statement->get_result();
 $resultado = $statement->affected_rows;

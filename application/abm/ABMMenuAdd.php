@@ -7,7 +7,7 @@ require_once $CONEXION_DIR;
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
-$idUsuario=$_POST['idUsuario'];
+$idComercio=$_POST['idComercio'];
 
  
 $conexion= new Conexion();
@@ -48,9 +48,9 @@ if($_FILES["imagen"]["error"] > 0) {
         }        
 
 
-$query = "INSERT INTO menu(titulo,descripcion,precio,archivo,idUsuario) VALUES (?,?,?,?,?)";
+$query = "INSERT INTO menu(titulo,descripcion,precio,archivo,idComercio) VALUES (?,?,?,?,?)";
 $statement = $conexion->prepare($query);
-$statement->bind_param('ssssi',$titulo,$descripcion,$precio,$archivo,$idUsuario);
+$statement->bind_param('ssssi',$titulo,$descripcion,$precio,$archivo,$idComercio);
 $statement->execute();
 $resultado=$statement->get_result();
 $resultado = $statement->affected_rows;

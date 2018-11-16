@@ -1,8 +1,10 @@
 l<?php
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
+    require_once $CONEXION_DIR;
 
     $idUsuario=$_POST['idUsuario'];
+    $idComercio=$_POST['idComercio'];
 
 
 ?>
@@ -46,6 +48,7 @@ l<?php
                         <div class="form-group">
 
                             <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario?>">
+                            <input type="hidden" name="idComercio"  value="<?php echo $idComercio?>">
                             
                             <label for="titulo">Título:</label>
                             <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Escriba su titulo" required>

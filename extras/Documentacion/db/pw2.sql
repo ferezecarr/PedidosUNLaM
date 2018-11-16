@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
-
--- Tiempo de generación: 11-11-2018 a las 16:33:17
-
--- Tiempo de generación: 10-11-2018 a las 19:48:51
-
+-- Tiempo de generación: 15-11-2018 a las 21:28:51
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -27,9 +23,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-drop database if exists pw2;
-create database if not exists pw2;
-use pw2;
+
 --
 -- Estructura de tabla para la tabla `comercio`
 --
@@ -43,8 +37,7 @@ CREATE TABLE `comercio` (
   `horario2` varchar(50) NOT NULL,
   `horario3` varchar(50) NOT NULL,
   `activo` int(2) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idMenu` int(11) NOT NULL
+  `idUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -53,13 +46,8 @@ CREATE TABLE `comercio` (
 
 INSERT INTO `comercio` (`idComercio`, `nombre`, `direccion`, `mediosPago`, `horario1`, `horario2`, `horario3`, `activo`, `idUsuario`) VALUES
 (0, 'La cantina de al lado', 'Arieta 2016', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 5),
-
-(2, 'El ultimo pancho', 'Peru 325', 'Efectivo', 'de 15 a 20hs', 'de 20 a 23 hs', 'de 08 a 12 hs', 0, 18),
-(3, 'Pancho villa', 'Almafuerte 4523', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 11:00 a 23:00 hs', 0, 8),
-(7, 'Queseria de mi sin ti', 'Tucasa 125', 'Efectivo Mercado Pago', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 18);
-
-(1, 'Queseria de mi sin ti', 'Sin corazon 125', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 0, 18);
-
+(2, 'El ultimo pancho', 'Peru 325', 'Efectivo', 'de 15 a 20hs', 'de 20 a 24 hs', 'de 08 a 12 hs', 0, 18),
+(3, 'Pancho villa', 'Almafuerte 4523', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 11:00 a 23:00 hs', 0, 8);
 
 -- --------------------------------------------------------
 
@@ -105,16 +93,22 @@ CREATE TABLE `menu` (
   `descripcion` varchar(200) NOT NULL,
   `precio` float NOT NULL,
   `archivo` varchar(100) NOT NULL,
-  `idUsuario` int(11) NOT NULL
+  `idComercio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `menu`
 --
 
-INSERT INTO `menu` (`idMenu`, `titulo`, `descripcion`, `precio`, `archivo`, `idUsuario`) VALUES
-(4, 'Ensalada Mixta con frutas', 'Muchas frutas ', 125, 'frutas varias.jpg', 18),
-(5, 'Tacos con carne', 'tortillas de maiz con carne', 36, 'tacos.jpg', 5);
+INSERT INTO `menu` (`idMenu`, `titulo`, `descripcion`, `precio`, `archivo`, `idComercio`) VALUES
+(6, 'Pancho mexicano', ' salchichas con crema de palta', 120, 'pancho con guacamole.jpg', 2),
+(7, 'pancho con papas fritas', 'Pancho con papas fritas', 100, 'pancho con papas.jpg', 2),
+(8, 'Pancho con diferentes salsas', 'Panchos con diferentes salsas', 95, 'panchos con diferentes salsas.jpg', 2),
+(9, 'Hamburguesa con papas', 'Hamburguesa con papas fritas', 200, 'combo hambuguesa.jpg', 0),
+(10, 'Tapas con cerveza', 'diferentes comidas pequeÃ±as con cerveza', 200, 'entrada con cerveza.jpg', 0),
+(11, 'Picada', 'Cantimpalo, chorizo colorado - salamin - mortadela - Salame-aceitunas-pickles etc', 300, 'picada.jpg', 0),
+(12, 'Especial pancho villa', 'Especial pancho villa', 250, 'especial pancho.jpg', 3),
+(13, 'Hot dog americano', 'Pancho con papas fritas y salsa americana', 150, 'pancho americano.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -248,8 +242,8 @@ ALTER TABLE `login`
 -- Indices de la tabla `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`idMenu`,`idUsuario`),
-  ADD KEY `idUsuario` (`idUsuario`);
+  ADD PRIMARY KEY (`idMenu`),
+  ADD KEY `menu_fk_1` (`idComercio`);
 
 --
 -- Indices de la tabla `oferta`
@@ -299,15 +293,12 @@ ALTER TABLE `viaje`
 --
 
 --
-
 -- AUTO_INCREMENT de la tabla `comercio`
 --
 ALTER TABLE `comercio`
-  MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
-
-
 -- AUTO_INCREMENT de la tabla `entrega`
 --
 ALTER TABLE `entrega`
@@ -323,7 +314,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `idMenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idMenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `oferta`
@@ -355,13 +346,6 @@ ALTER TABLE `venta`
 ALTER TABLE `viaje`
   MODIFY `idViaje` int(11) NOT NULL AUTO_INCREMENT;
 
-
-
-  --
-ALTER TABLE `comercio`
-  MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT;
-
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -371,9 +355,6 @@ ALTER TABLE `comercio`
 --
 ALTER TABLE `comercio`
   ADD CONSTRAINT `comercio_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `comercio`
-  ADD CONSTRAINT `comercio_ibfk_1` FOREIGN KEY(`idMenu`) REFERENCES `menu` (`idMenu`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `entrega`
@@ -391,39 +372,7 @@ ALTER TABLE `login`
 -- Filtros para la tabla `menu`
 --
 ALTER TABLE `menu`
-  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `oferta`
---
-ALTER TABLE `oferta`
-  ADD CONSTRAINT `oferta_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idMenu`) REFERENCES `menu` (`idMenu`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `venta`
---
-ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `viaje`
---
-ALTER TABLE `viaje`
-  ADD CONSTRAINT `viaje_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `viaje_ibfk_2` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `menu_fk_1` FOREIGN KEY (`idComercio`) REFERENCES `comercio` (`idComercio`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
