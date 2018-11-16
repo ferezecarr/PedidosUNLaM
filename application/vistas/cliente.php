@@ -15,7 +15,7 @@
     $conexion= new Conexion();
     $query="SELECT * FROM usuario WHERE idUsuario=$idUsuario";
     $resultado = $conexion->query($query);
-    $row=$resultado->fetch_assoc();
+    $row=$resultado->fetch_array(MYSQLI_ASSOC);
 
 ?>
 
@@ -51,37 +51,35 @@
 
             <div class="card" style="">
                 <div class="card-header">
-                    Mi Perfil:  <h5><?php echo 'Bienvenido '.utf8_decode($row['nombre']); ?></h5>
+                    Mi Perfil: 
                    <?php echo $tipoRol; ?>
                 </div>
                 <div class="card-body" style="">
-                    <form action="" method="post">
+                    <form action="<?php echo  $ABM_CLIENTE_MOD; ?>" method="post">
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Escriba su nombre">
+                            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $row['nombre'];?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" name="apellido" id="apellido" class="form-control" value="<?php echo $row['apellido'];?>">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono:</label>
-                            <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Escriba su teléfono">
+                            <input type="text" name="telefono" id="telefono" class="form-control" value="<?php echo $row['telefono'];?>">
+                        </div>
+                          <div class="form-group">
+                            <label for="direccion">Direccion:</label>
+                            <input type="text" name="direccion" id="direccion" class="form-control" value="<?php echo $row['direccion'];?>">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Escriba su email">
-                        </div>
-                        <div class="form-group">
-                            <label for="edad">Edad:</label>
-                            <input type="number" name="edad" id="edad" class="form-control" placeholder="Escriba su edad">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Mercado Pago
-                                </label>
-                            </div>
+                            <input type="email" name="email" id="email" class="form-control" value="<?php echo $row['email'];?>" required>
+
+                             <input type="hidden" name="idUsuario" id="idUsuario" class="form-control" value="<?php echo $row['idUsuario'];?>">
                         </div>
                         <button type="submit" class="btn btn-success btn-lg btn-block">Actualizar</button>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block">Cancelar</button>
+                        <button type="reset" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
                 </div>
             </div>

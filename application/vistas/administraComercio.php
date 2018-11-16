@@ -5,18 +5,9 @@
 
     $conexion= new Conexion();
 
+    $query="SELECT * FROM comercio WHERE activo=1";
+    $resultado = $conexion->query($query);
 
-    $where = "";
-    
-    if(!empty($_POST))
-    {
-        $valor = $_POST['campo'];
-        if(!empty($valor)){
-            $where = "WHERE idMenu LIKE '%$valor'";
-        }
-    }
-    $sql = "SELECT * FROM usuario $where";
-    $resultado = $conexion->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -51,36 +42,29 @@
 
             <div class="card">
                 <div class="card-header">
-                 <a href="comercios.php"> +  Agregar Pedido </a>
+                <h5>Comercios Activos</h5>
                 </div>
                 <div class="table">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Email</th>
                             <th>Direccion</th>
-                            <th>Categoria</th>
                         </tr>
                     </thead>
                     
                     <tbody>
                         <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                         <form action="<?php echo $ABM_COMERCIO_DEL; ?>" method="post">
                             <tr>
                                 <td><?php echo $row['nombre']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
                                 <td><?php echo $row['direccion']; ?></td>
-                                <td><?php echo $row['categoria']; ?></td>
-                                <td>
-                                    <button class="btn btn-success">Modificar
-                                    <a href="<?php echo $MODIFICAR_MENU_HOST; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; /*$row['idMenu'];*/ ?>">
-                                    </a>
-                                    </button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-warning">Eliminar
-                                    <a href="<?php echo $ABM_MENU_HOST_DEL; ?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete"></a>
-                                </button>
+                                  
+                                   <input type="hidden" name="idComercio"  value="<?php echo $row['idComercio'];?>">
+                                   <input type="submit" name="" class="btn btn-warning btn-mg" value="Eliminar">
+                                   </form>
                                 </td>
                             </tr>
                         <?php } ?>

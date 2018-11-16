@@ -32,6 +32,7 @@
     $ABM_MENU_HOST_MOD = "http://localhost/application/abm/ABMMenuMod.php";
     $ABM_MENU_HOST_DEL = "http://localhost/application/abm/ABMMenuDel.php";
     $ABM_REGISTRO_HOST_ADD = "http://localhost/application/abm/ABMRegistroAdd.php";
+    $ABM_CLIENTE_MOD = "http://localhost/application/abm/ABMClienteMod.php";
 
     $ABM_COMERCIO_ADD = "http://localhost/application/abm/ABMComercioAdd.php";
     $ABM_COMERCIO_MOD = "http://localhost/application/abm/ABMComercioMod.php";
