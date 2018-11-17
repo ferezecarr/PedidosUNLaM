@@ -59,5 +59,8 @@
       $AGREGAR_COMERCIO_HOST = "http://localhost/application/vistas/agregaComercio.php";
       $MODIFICAR_COMERCIO_HOST = "http://localhost/application/vistas/modificaComercio.php";
 
+      //TODAS LAS DIRECCIONES PARA EL CARRITO DE COMPRAS
+      $CARRITO_PRODUCTOS =  "http://localhost/application/vistas/carritoProductos.php"; 
+
 
 ?>

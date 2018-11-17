@@ -5,18 +5,10 @@
 
     $conexion= new Conexion();
 
+   // $idUsuario=$_SESSION['idUsuario'];
 
-    $where = "";
-    
-    if(!empty($_POST))
-    {
-        $valor = $_POST['campo'];
-        if(!empty($valor)){
-            $where = "WHERE idMenu LIKE '%$valor'";
-        }
-    }
-    $sql = "SELECT * FROM menu $where";
-    $resultado = $conexion->query($sql);
+    $query="SELECT  * FROM comercio WHERE activo = 1";
+    $resultado = $conexion->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -44,41 +36,38 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Cliente</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Mis Pedidos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="cliente.php">Cliente</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="misPedidos.php">Mis Pedidos</a></li>
                 </ol>
             </nav>
 
             <div class="card">
                 <div class="card-header">
-                 +  Comprar Pedido
+                 Lista de comercios 
                 </div>
                 <div class="table">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Menu</th>
-                            <th>Precio</th>
-                            <th>Comprar</th>
-                            <th>Agregar Bebida</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
                         </tr>
                     </thead>
                     
                     <tbody>
                         <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                            <form action="<?php echo  $CARRITO_PRODUCTOS;?>" method="post">
                             <tr>
-                                <td><?php echo $row['idMenu']; ?></td>
-                                <td><?php echo $row['titulo']; ?></td>
-                                <td><?php echo $row['precio']; ?></td>
+                                <td><?php echo $row['nombre']; ?></td>
+                                <td><?php echo $row['direccion']; ?></td>
                                 <td>
-                                    <button class="btn btn-success">Comprar
-                                    <a href="<?php echo $MODIFICAR_MENU_HOST; ?>" data-href="modificar.php?id=<?php echo $ABM_MENU_HOST_MOD; /*$row['idMenu'];*/ ?>">
-                                    </a>
-                                    </button>
-                                </td>
+                                    <input type="hidden" name="idComercio"  value="<?php echo $row['idComercio'];?>">
+
+                                        <input type="submit" name="" class="btn btn-success " value="Ver menus">
+                                    </td>
+                                </form>
                                 <td>
-                                    <button class="btn btn-warning">Agregar Bebida
+                                    <button class="btn btn-warning">Oferta del dia
                                     <a href="<?php echo $ABM_MENU_HOST_DEL; ?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete"></a>
                                 </button>
                                 </td>
@@ -87,12 +76,6 @@
                     </tbody>
                 </table>
             </div>
-            <span>Total: $
-                <?php
-                    echo $CARRITO;
-                ?>
-            
-            </span>
         </div>
     </div>
             
