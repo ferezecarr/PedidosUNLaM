@@ -68,16 +68,6 @@
                             <input type="submit" name="" class="btn btn-success btn-lg btn-block" value="Modificar Comercio">        
                         </form>
                     </div>
-                    <div class="form-group">
-                        <form action="<?php echo $MODIFICAR_COLOR_HOST; ?>" method="post">
-                            <button type="submit" class="btn btn-warning btn-lg btn-block">Modificar Color</button>
-                        </form>
-                    </div>
-                    <div class="form-group">
-                        <form action="<?php echo $MODIFICAR_TIPOGRAFIA_HOST; ?>" method="post">
-                            <button type="submit" class="btn btn-info btn-lg btn-block">Modificar Tipografia</button>
-                        </form>
-                    </div>
                 </div>
                      
                 </div>

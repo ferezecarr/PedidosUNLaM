@@ -9,22 +9,28 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="comercio.php" class="nav-link"><span class="oi oi-person" style="margin-right:12px"></span>Mi Perfil</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="cargarMenu.php" class="nav-link"><span class="oi oi-medical-cross" style="margin-right:12px"></span>Cargar Menús</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="pedidos.php" class="nav-link"><span class="oi oi-box"  style="margin-right:12px"></span>Pedidos</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="entregas.php" class="nav-link"><span class="oi oi-briefcase" style="margin-right:12px"></span>Entregas</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="actividad.php" class="nav-link"><span class="oi oi-aperture" style="margin-right:12px"></span>Actividad</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
+        <a href="<?php echo $MODIFICAR_COLOR_HOST; ?>" class="nav-link"><span class="oi oi-brush" style="margin-right:12px"></span>Modificar Color</a>
+      </li>
+      <li class="nav-item ">
+        <a href="<?php echo $MODIFICAR_TIPOGRAFIA_HOST; ?>" class="nav-link"><span class="oi oi-header" style="margin-right:12px"></span>Modificar Tipografía</a>
+      </li>
+      <li class="nav-item ">
         <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link" ><span class="oi oi-account-logout" style="margin-right:12px"></span>Cerrar Sesión</a>
       </li>
     </ul>
