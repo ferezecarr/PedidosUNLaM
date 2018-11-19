@@ -64,9 +64,6 @@
                             <input type="password" name="password" id="password" class="form-control" placeholder="Escriba su password" required>
                             <div id="mensajePass" class="mensajeError">Password inválida , ingrese nuevamente</div>
                         <br>
-                        <div class="form-group">
-                            <input type="checkbox" name="recordarme" id="recordarme"> Recordarme
-                        </div>
                         <button type="submit" id="ingresar" class="btn btn-success btn-lg btn-block">Ingresar</button>
                         <button type="reset" class="btn btn-danger btn-lg btn-block">Cancelar</button>
                     </form>
