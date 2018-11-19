@@ -9,7 +9,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="registro.php" class="nav-link"><span class="oi oi-loop-square" style="margin-right:12px"></span>Registrate</a>
       </li>
       <li class="nav-item ">

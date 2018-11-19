@@ -43,7 +43,7 @@
             <div class="card">
                 <div class="card-header">
                  <div class="jumbotron">
-                <h2><?php echo 'Bienvenid@ '.utf8_decode($row['nombre']); ?></h2>
+                <h2><?php echo 'Bienvenido '.utf8_decode($row['nombre']); ?></h2>
                  <h3><?php echo $tipoRol; ?></h3>
                 <br/>
             </div>

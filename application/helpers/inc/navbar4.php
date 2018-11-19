@@ -9,16 +9,16 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="administrador.php" class="nav-link"><span class="oi oi-person" style="margin-right:12px"></span>Mi Perfil</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="administraComercio.php" class="nav-link"><span class="oi oi-key"  style="margin-right:12px"></span>Administrar Comercios</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="solicitudComercio.php" class="nav-link"><span class="oi oi-lock-unlocked" style="margin-right:12px"></span>Solicitudes Comercios</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link"><span class="oi oi-account-logout" style="margin-right:12px"></span>Cerrar Sesión</a>
       </li>
     </ul>
