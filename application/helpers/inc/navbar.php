@@ -10,10 +10,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a href="registro.php" class="nav-link">Registrate</a>
+        <a href="registro.php" class="nav-link"><span class="oi oi-loop-square" style="margin-right:12px"></span>Registrate</a>
       </li>
       <li class="nav-item ">
-        <a href="ingreso.php" class="nav-link">Ingresar</a>
+        <a href="ingreso.php" class="nav-link"><span class="oi oi-account-login" style="margin-right:12px"></span>Ingresar</a>
       </li>
     </ul>
   </div>

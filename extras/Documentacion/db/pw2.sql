@@ -27,7 +27,9 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `comercio`
 --
-
+DROP DATABASE IF EXISTS pw2;
+CREATE DATABASE IF NOT EXISTS pw2;
+use pw2;
 CREATE TABLE `comercio` (
   `idComercio` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,

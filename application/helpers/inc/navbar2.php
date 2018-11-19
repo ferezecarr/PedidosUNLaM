@@ -10,19 +10,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a href="cliente.php" class="nav-link">Mi Perfil</a>
+        <a href="cliente.php" class="nav-link"><span class="oi oi-person" style="margin-right:12px"></span>Mi Perfil</a>
       </li>
       <li class="nav-item active">
-        <a href="misPedidos.php" class="nav-link">Mis Pedidos</a>
+        <a href="misPedidos.php" class="nav-link"><span class="oi oi-box"  style="margin-right:12px"></span>Mis Pedidos</a>
       </li>
       <li class="nav-item active">
-        <a href="comercios.php" class="nav-link">Comercios</a>
+        <a href="comercios.php" class="nav-link"><span class="oi oi-cart"  style="margin-right:12px"></span>Comercios</a>
       </li>
       <li class="nav-item active">
-        <a href="ofertasDelDia.php" class="nav-link">Ofertas del Día</a>
+        <a href="ofertasDelDia.php" class="nav-link"><span class="oi oi-calendar" style="margin-right:12px"></span>Ofertas del Día</a>
       </li>
       <li class="nav-item active">
-        <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link" style="margin-left:455px;">Cerrar Sesión</a>
+        <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link"><span class="oi oi-account-logout" style="margin-right:12px"></span>Cerrar Sesión</a>
       </li>
     </ul>
   </div>
