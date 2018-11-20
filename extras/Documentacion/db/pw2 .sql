@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2018 a las 23:40:06
+-- Tiempo de generación: 20-11-2018 a las 16:54:28
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -32,16 +32,17 @@ CREATE TABLE `carrito` (
   `idCarrito` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `horario` datetime NOT NULL,
-  `totalCompra` float NOT NULL
+  `totalCompra` float NOT NULL,
+  `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `carrito`
 --
 
-INSERT INTO `carrito` (`idCarrito`, `email`, `horario`, `totalCompra`) VALUES
-(2, 'cliente2@cliente.com', '2018-11-19 23:35:29', 500),
-(3, 'cliente2@cliente.com', '2018-11-19 23:37:35', 700);
+INSERT INTO `carrito` (`idCarrito`, `email`, `horario`, `totalCompra`, `estado`) VALUES
+(7, 'cliente2@cliente.com', '2018-11-20 14:58:16', 320, ''),
+(8, 'cliente2@cliente.com', '2018-11-20 15:03:15', 500, 'Pago');
 
 -- --------------------------------------------------------
 
@@ -162,13 +163,10 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPedido`, `idMenu`, `cantidad`, `idCarrito`) VALUES
-(1, 6, 1, 1),
-(2, 8, 1, 1),
-(3, 9, 1, 1),
-(4, 11, 1, 2),
-(5, 9, 1, 2),
-(6, 11, 2, 3),
-(7, 7, 1, 3);
+(15, 9, 1, 7),
+(16, 6, 1, 7),
+(17, 9, 1, 8),
+(18, 11, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -298,7 +296,8 @@ ALTER TABLE `oferta`
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`idPedido`,`idMenu`,`cantidad`),
   ADD KEY `idMenu` (`idMenu`),
-  ADD KEY `idUsuario` (`cantidad`);
+  ADD KEY `idUsuario` (`cantidad`),
+  ADD KEY `pedido_fk` (`idCarrito`);
 
 --
 -- Indices de la tabla `rol`
@@ -336,7 +335,7 @@ ALTER TABLE `viaje`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
@@ -372,7 +371,7 @@ ALTER TABLE `oferta`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -419,6 +418,12 @@ ALTER TABLE `login`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `menu_fk_1` FOREIGN KEY (`idComercio`) REFERENCES `comercio` (`idComercio`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_fk` FOREIGN KEY (`idCarrito`) REFERENCES `carrito` (`idCarrito`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

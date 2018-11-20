@@ -6,9 +6,11 @@
 session_start();
 /*GUARDA EN TABLAS LOS RESULTADOS DE LA COMPRA DEL CARRITO*/
 
+
 if(!empty($_POST)){
 
 $q1 = $conexion->query("insert into carrito(email,horario,totalCompra) value(\"$_POST[email]\",NOW(),\"$_POST[sumatotal]\")");
+
 if($q1){
 
 $idCarrito = $conexion->insert_id;
@@ -20,5 +22,5 @@ $q1 = $conexion->query("insert into pedido(idMenu,cantidad,idCarrito) value($c[i
 unset($_SESSION["carrito"]);
 }
 }
-print "<script>alert('Venta procesada exitosamente');window.location='misPedidos.php';</script>";
+print "<script>window.location='pagarCarrito.php?idCarrito=$idCarrito';</script>";
 ?>

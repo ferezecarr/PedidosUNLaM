@@ -2,6 +2,7 @@
 
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
     require_once $CONEXION_DIR;
+
    /*mostramos los productos (menus)en una tabla*/
     session_start();
 
@@ -12,6 +13,8 @@
 
     $query="SELECT * FROM menu WHERE idComercio= $idComercio";
     $resultado = $conexion->query($query);*/
+
+
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +122,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">Comprar</button>
+      <button type="submit" class="btn btn-primary">Pedir</button>
     </div>
   </div>
 </form>
