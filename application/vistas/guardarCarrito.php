@@ -5,21 +5,20 @@
  $conexion= new Conexion();
 session_start();
 /*GUARDA EN TABLAS LOS RESULTADOS DE LA COMPRA DEL CARRITO*/
-echo "Hola";
 
-/*if(!empty($_POST)){
+if(!empty($_POST)){
 
-$q1 = $con->query("insert into cart(client_email,created_at) value(\"$_POST[email]\",NOW())");
+$q1 = $conexion->query("insert into carrito(email,horario,totalCompra) value(\"$_POST[email]\",NOW(),\"$_POST[sumatotal]\")");
 if($q1){
 
-$cart_id = $con->insert_id;
+$idCarrito = $conexion->insert_id;
 
 foreach($_SESSION["carrito"] as $c){
 
-$q1 = $con->query("insert into cart_product(product_id,q,cart_id) value($c[product_id],$c[q],$cart_id)");
+$q1 = $conexion->query("insert into pedido(idMenu,cantidad,idCarrito) value($c[idMenu],$c[q],$idCarrito)");
 }
 unset($_SESSION["carrito"]);
 }
 }
-print "<script>alert('Venta procesada exitosamente');window.location='carritoProductos.php';</script>";*/
+print "<script>alert('Venta procesada exitosamente');window.location='misPedidos.php';</script>";
 ?>

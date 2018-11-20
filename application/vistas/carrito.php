@@ -50,6 +50,7 @@
                  <a href="carritoProductos.php" class="btn btn-success">Seguir Comprando</a>
                 </div>
 
+                 <?php $sumatotal = 0;?>
                 <?php
 
                 if(isset($_SESSION["carrito"]) && !empty($_SESSION["carrito"])):
@@ -80,6 +81,9 @@
   <td><?php echo $row2['titulo'];?></td>
   <td>$ <?php echo $row2['precio']; ?></td>
   <td>$ <?php echo $c["q"]*$row2['precio']; ?></td>
+  
+   <?php $sumatotal= $sumatotal +  $c["q"]*$row2['precio']; ?>
+
   <td style="width:260px;">
   <?php
   $encontrado = false;
@@ -91,11 +95,26 @@
 <?php endforeach; ?>
 </table>
 
+<div class="table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Total de la compra</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                          <th> <?php echo number_format($sumatotal,2); ?> </th>
+                        </tr>
+                    </thead>
+                </table>
+              </div>
+            
 <form class="form-horizontal" method="post" action="guardarCarrito.php">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Email del cliente</label>
     <div class="col-sm-5">
       <input type="email" name="email"  id="inputEmail3" placeholder="Email del cliente">
+      <input type="hidden" name="sumatotal"  id="sumatotal" value="<?php echo $sumatotal?>">
     </div>
   </div>
   <div class="form-group">
