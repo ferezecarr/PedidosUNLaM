@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2018 a las 16:54:28
+-- Tiempo de generación: 24-11-2018 a las 22:43:07
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -31,7 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `carrito` (
   `idCarrito` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `horario` datetime NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
   `totalCompra` float NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -40,9 +41,8 @@ CREATE TABLE `carrito` (
 -- Volcado de datos para la tabla `carrito`
 --
 
-INSERT INTO `carrito` (`idCarrito`, `email`, `horario`, `totalCompra`, `estado`) VALUES
-(7, 'cliente2@cliente.com', '2018-11-20 14:58:16', 320, ''),
-(8, 'cliente2@cliente.com', '2018-11-20 15:03:15', 500, 'Pago');
+INSERT INTO `carrito` (`idCarrito`, `email`, `fecha`, `hora`, `totalCompra`, `estado`) VALUES
+(21, 'cliente@cliente.com', '2018-11-24', '22:34:02', 400, 'Pago');
 
 -- --------------------------------------------------------
 
@@ -163,10 +163,7 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`idPedido`, `idMenu`, `cantidad`, `idCarrito`) VALUES
-(15, 9, 1, 7),
-(16, 6, 1, 7),
-(17, 9, 1, 8),
-(18, 11, 1, 8);
+(32, 9, 2, 21);
 
 -- --------------------------------------------------------
 
@@ -335,7 +332,7 @@ ALTER TABLE `viaje`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
@@ -371,7 +368,7 @@ ALTER TABLE `oferta`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

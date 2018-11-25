@@ -9,7 +9,7 @@ session_start();
 
 if(!empty($_POST)){
 
-$q1 = $conexion->query("insert into carrito(email,horario,totalCompra) value(\"$_POST[email]\",NOW(),\"$_POST[sumatotal]\")");
+$q1 = $conexion->query("insert into carrito(email,fecha,hora,totalCompra,estado) value(\"$_POST[email]\",CURDATE(),CURTIME(),\"$_POST[sumatotal]\",'impago')");
 
 if($q1){
 

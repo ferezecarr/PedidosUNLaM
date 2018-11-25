@@ -11,6 +11,7 @@
 
 
 
+
     $query="SELECT * FROM carrito WHERE idCarrito= $idCarrito";
     $resultado = $conexion->query($query);
     $row=$resultado->fetch_assoc();
@@ -41,19 +42,25 @@
 
 
 // Configuración de MercadoPago
-  $mp = new MP("7466445635971939", "b2T9AcENUezVW34XoYyOWe4mO1Ow4M32");
+//$mp = new MP("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET");
 
-  $preference_data = array(
-    "items"=> array(
-      array(       "id" => $row['idCarrito'],
+  $mp = new MP("7466445635971939", "b2T9AcENUezVW34XoYyOWe4mO1Ow4M32");
+  $mp->sandbox_mode(TRUE);
+
+    $preference_data = array(
+              "items" => array(
+                array(
+                  "id" => $idCarrito,
                   "title" => "Pago de pedido",
                   "description" => "",
                   "category_id" => "services",
                   "currency_id" => "ARS",
                   "quantity" => 1,
                   "unit_price" => (float) $row["totalCompra"]
+                )
+                ),
+            );
 
-      )));
 
   $preference_data =$mp->create_preference($preference_data);
 
@@ -97,16 +104,18 @@
                 </div>
                 
 
-            <!--  $estadocarrito = "Pago";
-              
-              // Actualizo el estado del pedido
-              $updateCarrito = mysqli_query($conexion, "UPDATE carrito SET estado='$estadocarrito' WHERE idCarrito='$idCarrito'") or die(mysqli_error($conexion));
-              if ($updateCarrito) {
-                echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Se ha realizado el pago satisfactoriamente.</div>';
-              } else {
-                echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error: No se ha podido actualizar el estado del carrito!</div>';
-              }-->
+        <?php
         
+     
+              // Actualizo el estado del carrito
+              $updateCarrito = mysqli_query($conexion, "UPDATE carrito SET estado='Pago' WHERE idCarrito='$idCarrito'") or die(mysqli_error($conexion));
+          ?>
+
+              <!--  <div class="alert alert-success alert-dismissable" id="exito" style="display:none">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Se ha realizado el pago satisfactoriamente.</div>
+
+              <div class="alert alert-danger alert-dismissable" id="fracaso" style="display:none">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error: No se ha podido actualizar el estado del carrito!</div>-->
  
       <form class="form-horizontal" action="" method="post">
         <div class="form-group">
@@ -114,30 +123,38 @@
         </div>
 
               <div class="form-group">
-          <label class="col-sm-3 control-label">Importe</label>
-          <div class="col-sm-4">
-            <input type="text" name="importePedido" readonly="readonly" value="$ <?php echo $row['totalCompra']; ?>" class="form-control">
-          </div>
-             <div class="form-group">
-          <label class="col-sm-3 control-label">Email Cliente</label>
-          <div class="col-sm-4">
-            <input type="text" name="email" readonly="readonly" value="<?php echo $row['email']; ?>" class="form-control">
-          </div>
-        </div>
-  
+               <label class="col-sm-3 control-label">Importe</label>
+               <div class="col-sm-4">
+               <input type="text" name="importePedido" readonly="readonly" value="$ <?php echo $row['totalCompra']; ?>" class="form-control">
+               </div>
+               <div class="form-group">
+               <label class="col-sm-3 control-label">Email Cliente</label>
+               <div class="col-sm-4">
+               <input type="text" name="email" readonly="readonly" value="<?php echo $row['email']; ?>" class="form-control">
+               </div>
+                <div class="form-group">
+               <label class="col-sm-3 control-label">Fecha</label>
+               <div class="col-sm-4">
+               <input type="text" name="email" readonly="readonly" value="<?php echo $row['fecha']; ?>" class="form-control">
+               </div>
         
             <div>
               <!-- Boton de MercadoPago -->
-              <a href="<?php echo $preference["response"]["init_point"]; ?>" mp-mode="modal" name="MP-Checkout" id="botonMercadoPago" class="btn btn-sm btn-primary">Pagar</a>
+              
+            
+              <a href="<?php echo $preference_data['response']['init_point'];?>" mp-mode="modal" name="MP-Checkout" id="botonMercadoPago"  class="btn btn-mg btn-primary">Pagar</a>
             </div>
           </div>
+    </form>
           
   </div>
+</div>
+
 
   <!-- Cargar library JavaScript de MercadoPago -->
-  <script type="text/javascript">
-  (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-   <script type="text/javascript" src="//resources.mlstatic.com/mptools/render.js"></script>
-                              
+
+ <script type="text/javascript">
+  (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();</script>
+                 
 </body>
 </html>
