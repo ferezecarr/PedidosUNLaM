@@ -8,6 +8,7 @@
 
     $conexion= new Conexion();
     $idCarrito = $_GET['idCarrito'];
+  
 
 
 
@@ -15,6 +16,7 @@
     $query="SELECT * FROM carrito WHERE idCarrito= $idCarrito";
     $resultado = $conexion->query($query);
     $row=$resultado->fetch_assoc();
+
 
 
 // MercadoPago:
@@ -93,7 +95,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="cliente.php">Cliente</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="misPedidos.php">Mis Pedidos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="comprar.php">Comprar</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="PagarCarrito.php">Pagar Pedido</a></li>
                 </ol>
             </nav>
@@ -109,6 +111,14 @@
      
               // Actualizo el estado del carrito
               $updateCarrito = mysqli_query($conexion, "UPDATE carrito SET estado='Pago' WHERE idCarrito='$idCarrito'") or die(mysqli_error($conexion));
+
+             //Ingreso los primeros valores a la tabla pedidos
+
+
+                $fechaEntrega = 0;
+                $horaEntrega = 0;
+
+                 $pedidos= mysqli_query($conexion,"INSERT into pedidos(fechaEntrega,horaEntrega,entrega,idCarrito) VALUE ($fechaEntrega,$horaEntrega,'Pendiente',$idCarrito)") or die(mysqli_error($conexion));
           ?>
 
               <!--  <div class="alert alert-success alert-dismissable" id="exito" style="display:none">

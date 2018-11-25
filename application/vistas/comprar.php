@@ -5,10 +5,10 @@
 
     $conexion= new Conexion();
 
-    $query="SELECT * FROM comercio WHERE activo=1";
+   // $idUsuario=$_SESSION['idUsuario'];
+
+    $query="SELECT  * FROM comercio WHERE activo = 1";
     $resultado = $conexion->query($query);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -37,13 +37,13 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="cliente.php">Cliente</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercios.php">Comercios</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="comprar.php">Comprar</a></li>
                 </ol>
             </nav>
 
             <div class="card">
                 <div class="card-header">
-                 Comercios 
+                 Lista de comercios 
                 </div>
                 <div class="table">
                 <table class="table table-striped">
@@ -51,26 +51,25 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Direccion</th>
-                            <th>Horarios</th>
-                            <th></th>
-                            <th></th>
-                             <th>Medios de Pago</th>
-
-
                         </tr>
                     </thead>
                     
                     <tbody>
                         <?php while($row = $resultado->fetch_array(MYSQLI_ASSOC)) { ?>
+                            <form action="<?php echo  $CARRITO_PRODUCTOS;?>" method="post">
                             <tr>
                                 <td><?php echo $row['nombre']; ?></td>
                                 <td><?php echo $row['direccion']; ?></td>
-                                <td><?php echo $row['horario1']; ?></td>
-                                <td><?php echo $row['horario2']; ?></td>
-                                <td><?php echo $row['horario3']; ?></td>
-                                <td><?php echo $row['mediosPago']; ?></td>
-                                </td>
                                 <td>
+                                    <input type="hidden" name="idComercio"  value="<?php echo $row['idComercio'];?>">
+
+                                        <input type="submit" name="" class="btn btn-success " value="Ver menus">
+                                    </td>
+                                </form>
+                                <td>
+                                    <button class="btn btn-warning">Oferta del dia
+                                    <a href="<?php echo $ABM_MENU_HOST_DEL; ?>" data-href="eliminar.php?id=<?php echo $row['idMenu']; ?>" data-toggle="modal" data-target="#confirm-delete"></a>
+                                </button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -79,9 +78,7 @@
             </div>
         </div>
     </div>
-   
-            </div>
-           
+            
     
     
 </body>

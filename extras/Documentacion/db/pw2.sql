@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2018 a las 22:43:07
+-- Tiempo de generación: 25-11-2018 a las 16:08:04
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -34,15 +34,20 @@ CREATE TABLE `carrito` (
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `totalCompra` float NOT NULL,
-  `estado` varchar(20) NOT NULL
+  `estado` varchar(20) NOT NULL,
+  `idComercio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `carrito`
 --
 
-INSERT INTO `carrito` (`idCarrito`, `email`, `fecha`, `hora`, `totalCompra`, `estado`) VALUES
-(21, 'cliente@cliente.com', '2018-11-24', '22:34:02', 400, 'Pago');
+INSERT INTO `carrito` (`idCarrito`, `email`, `fecha`, `hora`, `totalCompra`, `estado`, `idComercio`) VALUES
+(38, 'cliente2@cliente.com', '2018-11-25', '08:45:11', 200, 'Pago', 2),
+(39, 'cliente2@cliente.com', '2018-11-25', '09:38:50', 400, 'Pago', 0),
+(40, 'luisamensajes@hotmail.com', '2018-11-25', '11:25:47', 300, 'Pago', 0),
+(41, 'cliente2@cliente.com', '2018-11-25', '13:05:14', 400, 'Pago', 0),
+(42, 'cliente2@cliente.com', '2018-11-25', '13:06:19', 250, 'Pago', 3);
 
 -- --------------------------------------------------------
 
@@ -74,14 +79,36 @@ INSERT INTO `comercio` (`idComercio`, `nombre`, `direccion`, `mediosPago`, `hora
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detallecarrito`
+--
+
+CREATE TABLE `detallecarrito` (
+  `idDetalle` int(11) NOT NULL,
+  `idMenu` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `idCarrito` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `entrega`
 --
 
 CREATE TABLE `entrega` (
   `idEntrega` int(11) NOT NULL,
-  `tipoEntrega` varchar(50) NOT NULL,
-  `idUsuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `tipoEntrega` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `entrega`
+--
+
+INSERT INTO `entrega` (`idEntrega`, `tipoEntrega`) VALUES
+(1, 'Pendiente'),
+(2, 'En Viaje'),
+(3, 'Entregado'),
+(4, 'Cancelado');
 
 -- --------------------------------------------------------
 
@@ -148,22 +175,28 @@ CREATE TABLE `oferta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedido`
+-- Estructura de tabla para la tabla `pedidos`
 --
 
-CREATE TABLE `pedido` (
+CREATE TABLE `pedidos` (
   `idPedido` int(11) NOT NULL,
-  `idMenu` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
+  `fechaEntrega` date NOT NULL,
+  `horaEntrega` time NOT NULL,
+  `entrega` varchar(30) NOT NULL,
+  `idDelivery` int(11) NOT NULL,
   `idCarrito` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `pedido`
+-- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedido` (`idPedido`, `idMenu`, `cantidad`, `idCarrito`) VALUES
-(32, 9, 2, 21);
+INSERT INTO `pedidos` (`idPedido`, `fechaEntrega`, `horaEntrega`, `entrega`, `idDelivery`, `idCarrito`) VALUES
+(15, '0000-00-00', '00:00:00', 'Pendiente', 0, 38),
+(17, '0000-00-00', '00:00:00', 'En viaje', 0, 39),
+(18, '0000-00-00', '00:00:00', 'Pendiente', 0, 40),
+(19, '0000-00-00', '00:00:00', 'Pendiente', 0, 41),
+(20, '0000-00-00', '00:00:00', 'Pendiente', 0, 42);
 
 -- --------------------------------------------------------
 
@@ -260,11 +293,19 @@ ALTER TABLE `comercio`
   ADD KEY `idUsuario` (`idUsuario`);
 
 --
+-- Indices de la tabla `detallecarrito`
+--
+ALTER TABLE `detallecarrito`
+  ADD PRIMARY KEY (`idDetalle`,`idMenu`,`cantidad`),
+  ADD KEY `idMenu` (`idMenu`),
+  ADD KEY `idUsuario` (`cantidad`),
+  ADD KEY `pedido_fk` (`idCarrito`);
+
+--
 -- Indices de la tabla `entrega`
 --
 ALTER TABLE `entrega`
-  ADD PRIMARY KEY (`idEntrega`,`idUsuario`),
-  ADD KEY `idUsuario` (`idUsuario`);
+  ADD PRIMARY KEY (`idEntrega`);
 
 --
 -- Indices de la tabla `login`
@@ -288,13 +329,11 @@ ALTER TABLE `oferta`
   ADD KEY `idUsuario` (`idUsuario`);
 
 --
--- Indices de la tabla `pedido`
+-- Indices de la tabla `pedidos`
 --
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`idPedido`,`idMenu`,`cantidad`),
-  ADD KEY `idMenu` (`idMenu`),
-  ADD KEY `idUsuario` (`cantidad`),
-  ADD KEY `pedido_fk` (`idCarrito`);
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`idPedido`),
+  ADD KEY `pedidos_FK` (`idCarrito`);
 
 --
 -- Indices de la tabla `rol`
@@ -332,13 +371,19 @@ ALTER TABLE `viaje`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
 --
 ALTER TABLE `comercio`
   MODIFY `idComercio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `detallecarrito`
+--
+ALTER TABLE `detallecarrito`
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `entrega`
@@ -365,10 +410,10 @@ ALTER TABLE `oferta`
   MODIFY `idOferta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pedido`
+-- AUTO_INCREMENT de la tabla `pedidos`
 --
-ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+ALTER TABLE `pedidos`
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -399,10 +444,10 @@ ALTER TABLE `comercio`
   ADD CONSTRAINT `comercio_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `entrega`
+-- Filtros para la tabla `detallecarrito`
 --
-ALTER TABLE `entrega`
-  ADD CONSTRAINT `entrega_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `detallecarrito`
+  ADD CONSTRAINT `pedido_fk` FOREIGN KEY (`idCarrito`) REFERENCES `carrito` (`idCarrito`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `login`
@@ -417,10 +462,10 @@ ALTER TABLE `menu`
   ADD CONSTRAINT `menu_fk_1` FOREIGN KEY (`idComercio`) REFERENCES `comercio` (`idComercio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `pedido`
+-- Filtros para la tabla `pedidos`
 --
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_fk` FOREIGN KEY (`idCarrito`) REFERENCES `carrito` (`idCarrito`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_FK` FOREIGN KEY (`idCarrito`) REFERENCES `carrito` (`idCarrito`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

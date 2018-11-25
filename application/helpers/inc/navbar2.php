@@ -16,10 +16,10 @@
         <a href="misPedidos.php" class="nav-link"><span class="oi oi-box"  style="margin-right:12px"></span>Mis Pedidos</a>
       </li>
       <li class="nav-item ">
-        <a href="comercios.php" class="nav-link"><span class="oi oi-cart"  style="margin-right:12px"></span>Comercios</a>
+        <a href="comprar.php" class="nav-link"><span class="oi oi-cart"  style="margin-right:12px"></span>Comprar</a>
       </li>
       <li class="nav-item ">
-        <a href="ofertasDelDia.php" class="nav-link"><span class="oi oi-calendar" style="margin-right:12px"></span>Ofertas del Día</a>
+        <a href="comercios.php" class="nav-link"><span class="oi oi-calendar" style="margin-right:12px"></span>Comercios</a>
       </li>
       <li class="nav-item ">
         <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link"><span class="oi oi-account-logout" style="margin-right:12px"></span>Cerrar Sesión</a>

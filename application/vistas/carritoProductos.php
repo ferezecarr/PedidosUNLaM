@@ -42,7 +42,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="cliente.php">Cliente</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="misPedidos.php">Mis Pedidos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="comprar.php">Comprar</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="carritoProductos.php">Pedidos</a></li>
                 </ol>
             </nav>
