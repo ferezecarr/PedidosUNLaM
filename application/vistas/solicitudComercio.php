@@ -35,8 +35,8 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Administrar Comercios</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="comercio.php">Solicitud Comercios</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="administraComercio.php">Administrar Comercios</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="solicitudComercio.php">Solicitud Comercios</a></li>
                 </ol>
             </nav>
 

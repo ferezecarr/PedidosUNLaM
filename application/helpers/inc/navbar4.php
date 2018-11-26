@@ -19,6 +19,9 @@
         <a href="solicitudComercio.php" class="nav-link"><span class="oi oi-lock-unlocked" style="margin-right:12px"></span>Solicitudes Comercios</a>
       </li>
       <li class="nav-item ">
+        <a href="informeMensual.php" class="nav-link"><span class="oi oi-lock-unlocked" style="margin-right:12px"></span>Informe Mensual</a>
+      </li>
+      <li class="nav-item ">
         <a href="<?php echo $SESION_OUT_HOST ?>" class="nav-link"><span class="oi oi-account-logout" style="margin-right:12px"></span>Cerrar Sesión</a>
       </li>
     </ul>
