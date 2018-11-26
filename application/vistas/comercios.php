@@ -51,8 +51,8 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Direccion</th>
-                            <th>Horarios</th>
                             <th></th>
+                            <th>Horarios</th>
                             <th></th>
                              <th>Medios de Pago</th>
 

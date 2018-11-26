@@ -1,6 +1,15 @@
 <?php
-
     require_once $_SERVER["DOCUMENT_ROOT"]. "/paths.php";
+    require_once $CONEXION_DIR;
+
+    session_start();
+    
+    if(!isset($_SESSION['Delivery']))/*verificar que es delivery*/
+       { header("Location :" . $INDEX_HOST);}
+
+    $idUsuario=$_SESSION['idUsuario'];
+    $tipoRol  = $_SESSION['Delivery'];
+    $conexion= new Conexion();
 
 ?>
 
@@ -36,35 +45,70 @@
 
             <div class="card" >
                 <div class="card-header">
-                    Historial De Pedidos Realizados
+                 Pedidos Realizados o en curso
                 </div>
-                <div class="card-body" style="">
-                    <form action="" method="post">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Pedido</th>
-                                    <th scope="col">Detalle Pedido</th>
-                                    <th scope="col">Detalle Entrega</th>
-                                    <th scope="col">Comisión</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                 <tr>
-                                    <th scope="row">1</th>
-                                        <td>Milanesas c/ pure</td>
-                                        <td>Entregado Satisfactoriamente</td> 
-                                        <td>50.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
+                <div class="table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Comercio</th>
+                            <th>Importe</th> 
+                            <th>Estado</th>           
+                        </tr>
+                    </thead>       
+                    <tbody>
+                            <?php //Solo muestro los pedidos pendientes 
+                               $queryPendientes = mysqli_query($conexion,
+                                " SELECT pedidos.idCarrito,carrito.fecha,carrito.hora,carrito.idComercio,
+                                carrito.totalCompra,pedidos.entrega,pedidos.idPedido,pedidos.idDelivery
+                                  from pedidos join carrito on carrito.idCarrito = pedidos.idCarrito 
+                                  Where entrega = 'En viaje' or entrega = 'Entregado' 
+                                   ") or die(mysqli_error($conexion)); ?>
+
+                                  <?php 
+                                    while ($pedidos = $queryPendientes->fetch_array(MYSQLI_ASSOC)) { ?>
+
+                                        <!--Solo me muestra los pedidos que el delivery acepto-->
+                                        <?php if($pedidos['idDelivery'] == $idUsuario) {   ?>
+                                      <form action="gestionarEntregaPedido.php" method="post">
+                                         <?php 
+                                             $idComercio=$pedidos['idComercio'];
+
+                                             $queryComercio = mysqli_query($conexion," SELECT nombre from comercio where idComercio= '$idComercio'") or die(mysqli_error($conexion));
+                                             $nombreComercio = $queryComercio->fetch_array(MYSQLI_ASSOC)  ?>
+                                        <tr>
+                                        <td><?php echo $pedidos['fecha']; ?></td>
+                                        <td><?php echo $pedidos['hora']; ?></td>
+                                        <td><?php echo $nombreComercio['nombre']; ?></td>
+                                        <td><?php echo $pedidos['totalCompra']; ?></td>
+                                        <td><?php echo $pedidos['entrega']; ?></td>
+                                          <td>
+                                        <input type="hidden" name="idPedido"  value="<?php echo $pedidos['idPedido'];?>">
+                                         <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario;?>">
+                                         <input type="hidden" name="idComercio"  value="<?php echo $idComercio;?>">
+                                          <input type="hidden" name="importePedido"  value="<?php echo $pedidos['totalCompra']; ?>">
+                                           <input type="hidden" name="entrega"  value="<?php echo $pedidos['entrega']; ?>">
+
+                                        <input type="submit" name="" class="btn btn-success btn-mg btn-block" value="Cambiar">
+                                    </td>
+                                
+                               </form>
+                           <?php } ?>
+                                </td>
+                           
+                            </tr>
+                       
+                    </tbody>
+                <?php } ?>
+
+
+                </table>
             </div>
-        </div>
-        </div>
-    </div>
-    
+        </div>     
+
+         
     
 </body>
 </html>

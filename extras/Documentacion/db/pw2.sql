@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2018 a las 16:08:04
+-- Tiempo de generación: 25-11-2018 a las 23:11:32
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -113,6 +113,29 @@ INSERT INTO `entrega` (`idEntrega`, `tipoEntrega`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `liquidacion`
+--
+
+CREATE TABLE `liquidacion` (
+  `idLiquidacion` int(11) NOT NULL,
+  `idComercio` int(11) NOT NULL,
+  `idDelivery` int(11) NOT NULL,
+  `fechaEntrega` date NOT NULL,
+  `horaEntrega` time NOT NULL,
+  `importe` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `liquidacion`
+--
+
+INSERT INTO `liquidacion` (`idLiquidacion`, `idComercio`, `idDelivery`, `fechaEntrega`, `horaEntrega`, `importe`) VALUES
+(1, 3, 19, '2018-11-25', '22:41:28', 250),
+(2, 0, 15, '2018-11-25', '23:05:09', 300);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `login`
 --
 
@@ -192,11 +215,11 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idPedido`, `fechaEntrega`, `horaEntrega`, `entrega`, `idDelivery`, `idCarrito`) VALUES
-(15, '0000-00-00', '00:00:00', 'Pendiente', 0, 38),
+(15, '0000-00-00', '00:00:00', 'Entregado', 19, 38),
 (17, '0000-00-00', '00:00:00', 'En viaje', 0, 39),
-(18, '0000-00-00', '00:00:00', 'Pendiente', 0, 40),
-(19, '0000-00-00', '00:00:00', 'Pendiente', 0, 41),
-(20, '0000-00-00', '00:00:00', 'Pendiente', 0, 42);
+(18, '2018-11-25', '23:05:09', 'Entregado', 15, 40),
+(19, '2018-11-25', '22:36:06', 'Entregado', 19, 41),
+(20, '2018-11-25', '22:41:28', 'Entregado', 19, 42);
 
 -- --------------------------------------------------------
 
@@ -308,6 +331,12 @@ ALTER TABLE `entrega`
   ADD PRIMARY KEY (`idEntrega`);
 
 --
+-- Indices de la tabla `liquidacion`
+--
+ALTER TABLE `liquidacion`
+  ADD PRIMARY KEY (`idLiquidacion`);
+
+--
 -- Indices de la tabla `login`
 --
 ALTER TABLE `login`
@@ -390,6 +419,12 @@ ALTER TABLE `detallecarrito`
 --
 ALTER TABLE `entrega`
   MODIFY `idEntrega` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `liquidacion`
+--
+ALTER TABLE `liquidacion`
+  MODIFY `idLiquidacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `login`
