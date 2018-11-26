@@ -75,9 +75,10 @@
                                   from pedidos join carrito on carrito.idCarrito = pedidos.idCarrito 
                                   Where entrega = 'Pendiente' and carrito.email ='$email'") or die(mysqli_error($conexion)); ?>
                                   <?php 
-                                    while ($pedidos = $queryPendientes->fetch_array(MYSQLI_ASSOC)) { 
+                                    while ($pedidos = $queryPendientes->fetch_array(MYSQLI_ASSOC)) { ?>
+                                    <form action="cancelarPedido.php" method="post"> 
                                          
-                                             $idComercio=$pedidos['idComercio'];
+                                          <?php  $idComercio=$pedidos['idComercio'];
 
                                              $queryComercio = mysqli_query($conexion," SELECT nombre from comercio where idComercio= '$idComercio'") or die(mysqli_error($conexion));
                                              $nombreComercio = $queryComercio->fetch_array(MYSQLI_ASSOC)  ?>
@@ -89,15 +90,14 @@
                                         <td><?php echo $nombreComercio['nombre']; ?></td>
                                         <td><?php echo $pedidos['totalCompra']; ?></td>
                                         <td><?php echo $pedidos['entrega']; ?></td>
-                                
-                            </form>
-                                <td>
-                                   <form action="" method="post">
-                                    <?php //Actualizo el estado del pedido
-                                         /* $idPedido=$pedidos['idPedido'];
-                                       $updatePedido = mysqli_query($conexion, "UPDATE pedidos SET entrega='Cancelado' WHERE idpedido='$idPedido'") or die(mysqli_error($conexion)); */?>
+                                        <td>
+                                          <input type="hidden" name="idPedido"  value="<?php echo $pedidos['idPedido'];?>">
+                                         <input type="hidden" name="idUsuario"  value="<?php echo $idUsuario;?>">
+                                         <input type="hidden" name="idComercio"  value="<?php echo $idComercio;?>">
 
-                                   <input type="submit" name="" class="btn btn-warning " value="Cancelar">
+                                        <input type="submit" name="" class="btn btn-warning btn-mg btn-block" value="Cancelar">
+                                    </td>
+                            
                                    </form>
                                 </td>
                             </tr>
