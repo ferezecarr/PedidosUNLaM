@@ -129,14 +129,16 @@
                                 echo "<strong>TOTAL:</strong> $ $totalPorComercio";
                             ?>
                             <br>
-
+                             
+                                <?php  $sumatotalComercio= 0; ?>
                              <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tr>
                                     <th>Fecha</th>
                                     <th>idComercio</th>
                                     <th>Importe</th>
-                                    <th>Porcentaje Comercio</th>
+                                    <th>Porcentaje Comercio</th>                      
+
                                 </tr>
                                  <?php
                                $queryComercio = mysqli_query($conexion,
@@ -149,8 +151,9 @@
                                 <td><?php echo $row['fechaEntrega']; ?></td>
                                 <td><?php echo $row['idComercio']; ?></td>
                                 <td><?php echo $row['importe']; ?></td>
-                                <td><?php echo $row['importeComercio']; ?></td>
+                                <td><?php echo $row['importeComercio']; ?></td>           
                                 
+                                 <?php  $sumatotalComercio= $sumatotalComercio + $row['importeComercio']; ?>
                                 </td>
                                 <td>
                                 </td>
@@ -172,6 +175,7 @@
                             ?>
                             <br>
                         </br>
+                         <?php  $sumatotalDelivery= 0; ?>
                              <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tr>
@@ -193,6 +197,7 @@
                                 <td><?php echo $row['importe']; ?></td>
                                 <td><?php echo $row['importeDelivery']; ?></td>
                                 
+                                <?php  $sumatotalDelivery= $sumatotalDelivery +  $row['importeDelivery'];; ?>
                                 </td>
                                 <td>
                                 </td>
@@ -201,16 +206,22 @@
 
               <?php }  ?>
              <?php }  ?> 
-          <?php }  ?> 
-
-							
+          <?php }  ?> 				
                 </div>
             </div>
         </div>         
         </div>   
     </div>
-            
-    
-    
+                
+   </table>
+</div>
+          <div class="card text-center bg-light mb-3 mx-auto" style="max-width: 18rem;">
+                         <div class="card-header"><strong>Liquidación</strong></div>
+                                   <div class="card-body">
+                                      <p style="color: green;">Total a cobrar a los comercios:$ <?php echo  $sumatotalComercio ?></p>
+                                      <p style="color: red;">Total a pagar a los deliverys: $ <?php echo $sumatotalDelivery ?></p>                                 
+                                      </div>
+                                        </div>
+
 </body>
 </html>
