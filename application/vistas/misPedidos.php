@@ -104,25 +104,7 @@
                        
                     </tbody>
                 <?php } ?>
-
-
-                </table>
-            </div>
-        </div>     
-
-         <div class="table">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Comercio</th>
-                            <th>Importe</th> 
-                            <th>Estado</th>           
-                        </tr>
-                    </thead>       
-                    <tbody>
-                            <?php //Pedidos que no estan pendientes
+                 <?php //Pedidos que no estan pendientes
                                $queryPendientes = mysqli_query($conexion,
                                 " SELECT pedidos.idCarrito,carrito.fecha,carrito.hora,carrito.idComercio,
                                 carrito.totalCompra,pedidos.entrega
@@ -135,7 +117,6 @@
                                              $queryComercio = mysqli_query($conexion," SELECT nombre from comercio where idComercio= '$idComercio'") or die(mysqli_error($conexion));
                                              $nombreComercio = $queryComercio->fetch_array(MYSQLI_ASSOC)  ?>
                                 
-                                    <form action="" method="post">
                                         <tr>
                                         <td><?php echo $pedidos['fecha']; ?></td>
                                         <td><?php echo $pedidos['hora']; ?></td>
@@ -143,18 +124,14 @@
                                         <td><?php echo $pedidos['totalCompra']; ?></td>
                                         <td><?php echo $pedidos['entrega']; ?></td>
                                 
-                            </form>
-                                <td>
-                                   <form action="" method="post">
-                                   </form>
-                                </td>
-                            </tr>
-                       
-                    </tbody>
+                          
                 <?php } ?>
 
-
                 </table>
+            </div>
+        </div>     
+
+             
             </div>
         </div>
 
