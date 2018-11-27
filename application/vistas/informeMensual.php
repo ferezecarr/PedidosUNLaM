@@ -135,7 +135,7 @@
                             <table class="table table-striped table-hover">
                                 <tr>
                                     <th>Fecha</th>
-                                    <th>idComercio</th>
+                                    <th>Nombre Comercio</th>
                                     <th>Importe</th>
                                     <th>Porcentaje Comercio</th>                      
 
@@ -143,13 +143,23 @@
                                  <?php
                                $queryComercio = mysqli_query($conexion,
                                 "SELECT fechaEntrega,idComercio,importe,(importe*0.08) as importeComercio
-                                FROM liquidacion                          
-                                WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' ORDER BY liquidacion.idComercio") or die(mysqli_error($conexion));?>
-                          <tbody>
+                                 FROM liquidacion                          
+                                 WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' 
+                                 ORDER BY liquidacion.idComercio") or die(mysqli_error($conexion));?>                               
+                          <tbody>                    
+
                         <?php while($row = $queryComercio->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
+                           <?php 
+                             $idComercio=$row['idComercio'];
+                             $queryNombreComercio = mysqli_query($conexion,
+                                 " SELECT nombre 
+                                   FROM comercio 
+                                   WHERE idComercio= '$idComercio'") or die(mysqli_error($conexion));
+                                   while( $nombreComercio = $queryNombreComercio->fetch_array(MYSQLI_ASSOC)) { ?>
+
                                 <td><?php echo $row['fechaEntrega']; ?></td>
-                                <td><?php echo $row['idComercio']; ?></td>
+                                <td><?php echo $nombreComercio['nombre'] ?></td>
                                 <td><?php echo $row['importe']; ?></td>
                                 <td><?php echo $row['importeComercio']; ?></td>           
                                 
@@ -159,6 +169,7 @@
                                 </td>
                             </tr>
                         <?php } ?>
+                    <?php } ?>
                          
 
                                   <?php
@@ -171,7 +182,7 @@
                                 if ($queryTotalPedidosEntregados) {
                                     $totalPorDelivery = number_format((float)mysqli_fetch_assoc($queryTotalPedidosEntregados)["total"], 2, '.', '');
                                 }
-                               // echo "<strong>TOTAL:</strong> $ $totalPorDelivery";
+                    
                             ?>
                             <br>
                         </br>
@@ -180,20 +191,30 @@
                             <table class="table table-striped table-hover">
                                 <tr>
                                     <th>Fecha</th>
-                                    <th>idDelivery</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
                                     <th>Importe</th>
                                     <th>Porcentaje Delivery</th>
                                 </tr>
                                  <?php
-                               $queryComercio = mysqli_query($conexion,
+                               $queryDelivery = mysqli_query($conexion,
                                 "SELECT fechaEntrega,idDelivery,importe,(importe*0.03) as importeDelivery
-                                FROM liquidacion                          
-                                WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion'") or die(mysqli_error($conexion));?>
+                                 FROM liquidacion                          
+                                 WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion'") or die(mysqli_error($conexion));?>
                           <tbody>
-                        <?php while($row = $queryComercio->fetch_array(MYSQLI_ASSOC)) { ?>
+                        <?php while($row = $queryDelivery->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
+                                <?php 
+                                 $idDelivery=$row['idDelivery'];
+                                 $queryNombreDelivery = mysqli_query($conexion,
+                                 " SELECT nombre,apellido 
+                                   FROM usuario 
+                                   WHERE idUsuario= '$idDelivery'") or die(mysqli_error($conexion));
+                                   while( $nombreDelivery = $queryNombreDelivery->fetch_array(MYSQLI_ASSOC)) { ?>
+
                                 <td><?php echo $row['fechaEntrega']; ?></td>
-                                <td><?php echo $row['idDelivery']; ?></td>
+                                <td><?php echo $nombreDelivery['nombre']; ?></td>
+                                <td><?php echo $nombreDelivery['apellido']; ?></td>
                                 <td><?php echo $row['importe']; ?></td>
                                 <td><?php echo $row['importeDelivery']; ?></td>
                                 
@@ -206,7 +227,8 @@
 
               <?php }  ?>
              <?php }  ?> 
-          <?php }  ?> 				
+          <?php }  ?> 
+        <?php }  ?>				
                 </div>
             </div>
         </div>         
@@ -215,13 +237,20 @@
                 
    </table>
 </div>
-          <div class="card text-center bg-light mb-3 mx-auto" style="max-width: 18rem;">
+             <?php
+                if (isset($sumatotalComercio) && isset($sumatotalDelivery)) {
+                                    ?>
+
+             <div class="card text-center bg-light mb-3 mx-auto" style="max-width: 18rem;">
                          <div class="card-header"><strong>Liquidación</strong></div>
                                    <div class="card-body">
                                       <p style="color: green;">Total a cobrar a los comercios:$ <?php echo  $sumatotalComercio ?></p>
                                       <p style="color: red;">Total a pagar a los deliverys: $ <?php echo $sumatotalDelivery ?></p>                                 
                                       </div>
-                                        </div>
+                            </div>
+                                <?php
+                                }
+                            ?>
 
 </body>
 </html>

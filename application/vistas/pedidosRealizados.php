@@ -59,12 +59,12 @@
                         </tr>
                     </thead>       
                     <tbody>
-                            <?php //Solo muestro los pedidos pendientes 
+                            <?php //Solo muestro los pedidos que no estan pendientes 
                                $queryPendientes = mysqli_query($conexion,
                                 " SELECT pedidos.idCarrito,carrito.fecha,carrito.hora,carrito.idComercio,
                                 carrito.totalCompra,pedidos.entrega,pedidos.idPedido,pedidos.idDelivery
                                   from pedidos join carrito on carrito.idCarrito = pedidos.idCarrito 
-                                  Where entrega = 'En viaje' or entrega = 'Entregado' 
+                                  Where entrega = 'En viaje'
                                    ") or die(mysqli_error($conexion)); ?>
 
                                   <?php 
@@ -76,7 +76,10 @@
                                          <?php 
                                              $idComercio=$pedidos['idComercio'];
 
-                                             $queryComercio = mysqli_query($conexion," SELECT nombre from comercio where idComercio= '$idComercio'") or die(mysqli_error($conexion));
+                                             $queryComercio = mysqli_query($conexion,
+                                              " SELECT nombre 
+                                                from comercio 
+                                                where idComercio= '$idComercio'") or die(mysqli_error($conexion));
                                              $nombreComercio = $queryComercio->fetch_array(MYSQLI_ASSOC)  ?>
                                         <tr>
                                         <td><?php echo $pedidos['fecha']; ?></td>
@@ -93,7 +96,6 @@
 
                                         <input type="submit" name="" class="btn btn-success btn-mg btn-block" value="Cambiar">
                                     </td>
-                                
                                </form>
                            <?php } ?>
                                 </td>
@@ -103,6 +105,36 @@
                     </tbody>
                 <?php } ?>
 
+            <?php //Solo muestro los pedidos que estan entregados
+                               $queryPendientes = mysqli_query($conexion,
+                                " SELECT pedidos.idCarrito,carrito.fecha,carrito.hora,carrito.idComercio,
+                                carrito.totalCompra,pedidos.entrega,pedidos.idPedido,pedidos.idDelivery
+                                  from pedidos join carrito on carrito.idCarrito = pedidos.idCarrito 
+                                  Where entrega = 'Entregado' 
+                                   ") or die(mysqli_error($conexion)); ?>
+
+                                  <?php 
+                                    while ($pedidos = $queryPendientes->fetch_array(MYSQLI_ASSOC)) { ?>
+
+                                        <!--Solo me muestra los pedidos que el delivery acepto-->
+                                        <?php if($pedidos['idDelivery'] == $idUsuario) {   ?>
+                                         <?php 
+                                             $idComercio=$pedidos['idComercio'];
+
+                                             $queryComercio = mysqli_query($conexion,
+                                              " SELECT nombre 
+                                                from comercio 
+                                                where idComercio= '$idComercio'") or die(mysqli_error($conexion));
+                                             $nombreComercio = $queryComercio->fetch_array(MYSQLI_ASSOC)  ?>
+                                        <tr>
+                                        <td><?php echo $pedidos['fecha']; ?></td>
+                                        <td><?php echo $pedidos['hora']; ?></td>
+                                        <td><?php echo $nombreComercio['nombre']; ?></td>
+                                        <td><?php echo $pedidos['totalCompra']; ?></td>
+                                        <td><?php echo $pedidos['entrega']; ?></td>
+                                          <td>
+                                 <?php } ?>     
+                               <?php } ?>            
 
                 </table>
             </div>
