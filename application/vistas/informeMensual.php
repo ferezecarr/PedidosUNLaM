@@ -145,7 +145,7 @@
                                 "SELECT fechaEntrega,idComercio,importe,(importe*0.08) as importeComercio
                                  FROM liquidacion                          
                                  WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' 
-                                 ORDER BY liquidacion.idComercio") or die(mysqli_error($conexion));?>                               
+                                 ORDER BY liquidacion.fechaEntrega") or die(mysqli_error($conexion));?>                               
                           <tbody>                    
 
                         <?php while($row = $queryComercio->fetch_array(MYSQLI_ASSOC)) { ?>
@@ -176,7 +176,8 @@
                                 $queryTotalPedidosEntregados = mysqli_query($conexion,
                                 "SELECT SUM(liquidacion.importe) as total
                                 FROM liquidacion                          
-                                WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' ") or die(mysqli_error($conexion));
+                                WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' 
+                                ") or die(mysqli_error($conexion));
                                 
                                 $totalPorDelivery = (float) 0.0;
                                 if ($queryTotalPedidosEntregados) {
@@ -200,7 +201,8 @@
                                $queryDelivery = mysqli_query($conexion,
                                 "SELECT fechaEntrega,idDelivery,importe,(importe*0.03) as importeDelivery
                                  FROM liquidacion                          
-                                 WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion'") or die(mysqli_error($conexion));?>
+                                 WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion'
+                                 ORDER BY liquidacion.fechaEntrega") or die(mysqli_error($conexion));?>
                           <tbody>
                         <?php while($row = $queryDelivery->fetch_array(MYSQLI_ASSOC)) { ?>
                             <tr>
@@ -250,7 +252,15 @@
                             </div>
                                 <?php
                                 }
-                            ?>
+                                  else {
+                        echo '<div class="alert alert-success alert-dismissable">Seleccione un <b>Año</b> y un <b>Mes</b> para visualizar un informe mensual.</div>';
+                    }
+          ?>
+                            
+                                
+                        
+                   
+        </div>
 
 </body>
 </html>
