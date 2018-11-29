@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2018 a las 23:11:32
+-- Tiempo de generación: 29-11-2018 a las 16:18:05
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -44,10 +44,13 @@ CREATE TABLE `carrito` (
 
 INSERT INTO `carrito` (`idCarrito`, `email`, `fecha`, `hora`, `totalCompra`, `estado`, `idComercio`) VALUES
 (38, 'cliente2@cliente.com', '2018-11-25', '08:45:11', 200, 'Pago', 2),
-(39, 'cliente2@cliente.com', '2018-11-25', '09:38:50', 400, 'Pago', 0),
 (40, 'luisamensajes@hotmail.com', '2018-11-25', '11:25:47', 300, 'Pago', 0),
 (41, 'cliente2@cliente.com', '2018-11-25', '13:05:14', 400, 'Pago', 0),
-(42, 'cliente2@cliente.com', '2018-11-25', '13:06:19', 250, 'Pago', 3);
+(42, 'cliente2@cliente.com', '2018-11-25', '13:06:19', 250, 'Pago', 3),
+(43, 'cliente@cliente.com', '2018-11-26', '15:11:57', 400, 'Pago', 0),
+(44, 'cliente@cliente.com', '2018-11-26', '15:39:10', 200, 'Pago', 0),
+(45, 'cliente@cliente.com', '2018-11-27', '22:42:14', 400, 'Pago', 0),
+(46, 'luisamensajes@hotmail.com', '2018-11-29', '16:08:22', 120, 'Pago', 2);
 
 -- --------------------------------------------------------
 
@@ -72,9 +75,9 @@ CREATE TABLE `comercio` (
 --
 
 INSERT INTO `comercio` (`idComercio`, `nombre`, `direccion`, `mediosPago`, `horario1`, `horario2`, `horario3`, `activo`, `idUsuario`) VALUES
-(0, 'La cantina de al lado', 'Arieta 2016', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 1, 5),
-(2, 'El ultimo pancho', 'Peru 325', 'Efectivo', 'de 15 a 20hs', 'de 20 a 24 hs', 'de 08 a 12 hs', 1, 18),
-(3, 'Pancho villa', 'Almafuerte 4523', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 11:00 a 23:00 hs', 0, 8);
+(0, 'La cantina de al lado', ' Almafuerte 3001, San Justo', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 10:00 a 23:00 hs', 1, 5),
+(2, 'El ultimo pancho', 'Mosconi 2494, Ramos Mejia', 'Efectivo', 'de 15 a 20hs', 'de 20 a 24 hs', 'de 08 a 12 hs', 1, 18),
+(3, 'Pancho villa', 'Almafuerte 3351,\r\nSan Justo', 'un valor', 'Lunes a Viernes de 8:00 a 20:00 hs', 'Sabados de 8:00 a 00:00 hs', 'Domingos y Feriados de 11:00 a 23:00 hs', 0, 8);
 
 -- --------------------------------------------------------
 
@@ -131,7 +134,8 @@ CREATE TABLE `liquidacion` (
 
 INSERT INTO `liquidacion` (`idLiquidacion`, `idComercio`, `idDelivery`, `fechaEntrega`, `horaEntrega`, `importe`) VALUES
 (1, 3, 19, '2018-11-25', '22:41:28', 250),
-(2, 0, 15, '2018-11-25', '23:05:09', 300);
+(2, 0, 15, '2018-11-25', '23:05:09', 300),
+(3, 0, 15, '2018-11-26', '22:30:57', 200);
 
 -- --------------------------------------------------------
 
@@ -216,10 +220,13 @@ CREATE TABLE `pedidos` (
 
 INSERT INTO `pedidos` (`idPedido`, `fechaEntrega`, `horaEntrega`, `entrega`, `idDelivery`, `idCarrito`) VALUES
 (15, '0000-00-00', '00:00:00', 'Entregado', 19, 38),
-(17, '0000-00-00', '00:00:00', 'En viaje', 0, 39),
 (18, '2018-11-25', '23:05:09', 'Entregado', 15, 40),
 (19, '2018-11-25', '22:36:06', 'Entregado', 19, 41),
-(20, '2018-11-25', '22:41:28', 'Entregado', 19, 42);
+(20, '2018-11-25', '22:41:28', 'Entregado', 19, 42),
+(21, '0000-00-00', '00:00:00', 'Cancelado', 0, 43),
+(22, '2018-11-26', '22:30:56', 'Entregado', 15, 44),
+(23, '0000-00-00', '00:00:00', 'Pendiente', 0, 45),
+(24, '0000-00-00', '00:00:00', 'Pendiente', 0, 46);
 
 -- --------------------------------------------------------
 
@@ -267,11 +274,11 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `categoria`, `idRol`) VALUES
 (4, 'Dios Admin', 'Admin', 'administrador@administrador.com', 'admin', 'Av.Administrador', '44509876', 'Administrador', 4),
 (5, 'Rodrigo', 'Gonzalez', 'comercio1@comercio.com', '592bd52a1a347976b32a561138c2cbc36d6cecd5', 'Arieta 2016', '11523647', 'Comercio', 2),
-(7, 'Melisa', 'Perez', 'cliente2@cliente.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Almafuerte 125', '11256369', 'Cliente', 1),
+(7, 'Melisa', 'Perez', 'cliente2@cliente.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', ' Av. Dr. Ignacio Arieta 2640, San Justo', '11256369', 'Cliente', 1),
 (8, 'Leandro', 'Santoro', 'comercio3@comercio.com', '592bd52a1a347976b32a561138c2cbc36d6cecd5', 'Peru 256', '11456852', 'Comercio', 2),
-(10, 'Luisa', 'Benitez', 'luisamensajes@hotmail.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Soberania Nacional 5639', '11698452', 'Cliente', 1),
+(10, 'Luisa', 'Benitez', 'luisamensajes@hotmail.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Pres. Juan Domingo Peron 2700,San Justo', '11698452', 'Cliente', 1),
 (15, 'Repartidor', 'Gomez', 'delivery2@delivery.com', '391cb1e07c5f1f4e3000e0fd125802c7a9b1dc96', 'Tucasa 125', '11456789', 'Delivery', 3),
-(17, 'Pepe', 'Cibrian', 'cliente@cliente.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Tucasa 785', '11256347', 'Cliente', 1),
+(17, 'Pepe', 'Cibrian', 'cliente@cliente.com', 'd94019fd760a71edf11844bb5c601a4de95aacaf', 'Av. Pres. Dr. Arturo Umberto Illia 2617,San Justo', '11256347', 'Cliente', 1),
 (18, 'Juan', 'Juancho', 'comercio@comercio.com', '592bd52a1a347976b32a561138c2cbc36d6cecd5', 'Almafuerte 123', '11245789', 'Comercio', 2),
 (19, 'Jose', 'Josesito', 'delivery@delivery.com', '391cb1e07c5f1f4e3000e0fd125802c7a9b1dc96', 'micasa 123', '11256478', 'Delivery', 3);
 
@@ -400,7 +407,7 @@ ALTER TABLE `viaje`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `comercio`
@@ -424,7 +431,7 @@ ALTER TABLE `entrega`
 -- AUTO_INCREMENT de la tabla `liquidacion`
 --
 ALTER TABLE `liquidacion`
-  MODIFY `idLiquidacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idLiquidacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `login`
@@ -448,7 +455,7 @@ ALTER TABLE `oferta`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
