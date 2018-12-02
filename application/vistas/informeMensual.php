@@ -270,6 +270,7 @@
             function drawStacked() {
                 var data = google.visualization.arrayToDataTable(
                     <?php
+                        
                         echo json_encode($sumatotalComercio);    
                     ?>
                 );
