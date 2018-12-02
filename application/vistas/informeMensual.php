@@ -27,7 +27,7 @@
         require_once $HEADER_DIR;
 
     ?>
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 
@@ -257,9 +257,44 @@
                     }
           ?>
                             
-                                
+        <div id="chart_div_1"></div>                        
                         
-                   
+        <script type="text/javascript"> 
+        
+            google.charts.load('current' , {
+                packages:['corechart','bar']
+            });
+
+            google.charts.setOnLoadCallback(drawStacked);
+
+            function drawStacked() {
+                var data = google.visualization.arrayToDataTable(
+                    <?php
+                        echo json_encode($sumatotalComercio);    
+                    ?>
+                );
+
+                var options = {
+                    title : 'Informe mensual',
+                    chartArea : {
+                        width : '50%'
+                    },
+                    isStacked : true,
+                    hAxis : {
+                        title : 'Cantidad',
+                        minValue : 0
+                    },
+                    vAxis : {
+                        title : 'Estado'
+                    }
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div_1'));
+                chart.draw(data , options);
+
+            }
+
+        </script>         
         </div>
 
 </body>
