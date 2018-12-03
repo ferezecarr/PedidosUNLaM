@@ -107,7 +107,9 @@
                         $queryLiquidacionExistente = mysqli_query($conexion,
                         "SELECT *
                         FROM liquidacion
-                        WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion'") or die(mysqli_error($conexion));
+                        WHERE   YEAR(liquidacion.fechaEntrega) = YEAR('$periodoLiquidacion') AND
+                        MONTH(liquidacion.fechaEntrega) = MONTH('$periodoLiquidacion')") 
+                        or die(mysqli_error($conexion));
                           if (mysqli_num_rows($queryLiquidacionExistente) == 0) {
                             echo '<div class="alert alert-warning alert-dismissable">Aviso: No existe una liquidación para el periodo seleccionado.</div>';
                         } else {
@@ -117,10 +119,11 @@
                         </br>
 
                                   <?php
+                        
                                 $queryTotalventasPorComercio = mysqli_query($conexion,
                                 "SELECT SUM(liquidacion.importe) as total
                                 FROM liquidacion                          
-                                WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' ORDER BY liquidacion.idComercio") or die(mysqli_error($conexion));
+                                WHERE MONTH(liquidacion.fechaEntrega) = MONTH('$periodoLiquidacion')  ORDER BY liquidacion.idComercio") or die(mysqli_error($conexion));
                                 
                                 $totalPorComercio = (float) 0.0;
                                 if ($queryTotalventasPorComercio) {
@@ -144,7 +147,7 @@
                                $queryComercio = mysqli_query($conexion,
                                 "SELECT fechaEntrega,idComercio,importe,(importe*0.08) as importeComercio
                                  FROM liquidacion                          
-                                 WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion' 
+                                 WHERE MONTH(liquidacion.fechaEntrega) = MONTH('$periodoLiquidacion') 
                                  ORDER BY liquidacion.fechaEntrega") or die(mysqli_error($conexion));?>                               
                           <tbody>                    
 
@@ -201,7 +204,7 @@
                                $queryDelivery = mysqli_query($conexion,
                                 "SELECT fechaEntrega,idDelivery,importe,(importe*0.03) as importeDelivery
                                  FROM liquidacion                          
-                                 WHERE liquidacion.fechaEntrega >= '$periodoLiquidacion'
+                                 WHERE MONTH(liquidacion.fechaEntrega) = MONTH('$periodoLiquidacion')
                                  ORDER BY liquidacion.fechaEntrega") or die(mysqli_error($conexion));?>
                           <tbody>
                         <?php while($row = $queryDelivery->fetch_array(MYSQLI_ASSOC)) { ?>
@@ -257,7 +260,9 @@
                     }
           ?>
                             
-        <div id="chart_div_1"></div>                        
+        <div id="chart_div_1"> 
+         <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>                     
                         
         <script type="text/javascript"> 
         
@@ -265,38 +270,32 @@
                 packages:['corechart','bar']
             });
 
-            google.charts.setOnLoadCallback(drawStacked);
+        
 
-            function drawStacked() {
-                var data = google.visualization.arrayToDataTable(
-                    <?php
-                        
-                        echo json_encode($sumatotalComercio);    
-                    ?>
-                );
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Browser');
+            data.addColumn('number', 'Percentage');
+            data.addRows([
+               ['Suma total comercios', <?php echo $totalPorComercio?>],
+               ['Total cobrar por comercios', <?php echo $sumatotalComercio?>],
+               ['Total a pagar a deliverys', <?php echo $sumatotalDelivery ?>]
+            ]);
+               
+            // Set chart options
+            var options = {'title':'Grafica de ventas ', 'width':550, 'height':400};
 
-                var options = {
-                    title : 'Informe mensual',
-                    chartArea : {
-                        width : '50%'
-                    },
-                    isStacked : true,
-                    hAxis : {
-                        title : 'Cantidad',
-                        minValue : 0
-                    },
-                    vAxis : {
-                        title : 'Estado'
-                    }
-                };
-
-                var chart = new google.visualization.BarChart(document.getElementById('chart_div_1'));
-                chart.draw(data , options);
-
-            }
-
-        </script>         
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.PieChart(document.getElementById ('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
         </div>
+</tbody>
+</table>
+</div>
 
 </body>
 </html>
