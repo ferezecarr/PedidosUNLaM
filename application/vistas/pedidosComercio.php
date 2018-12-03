@@ -97,11 +97,12 @@
                                        <?php } ?>
                                         <?php if($pedidos['entrega'] == "Cancelado" ) { ?> 
                                         <td><p style="color: red;">
-                                         <?php echo $pedidos['entrega'] ?> </p></td>
-                                       
-                                               
+                                         <?php echo $pedidos['entrega'] ?> </p></td>    
                                          <?php } ?>
                                           <td>
+                                        <?php  if($pedidos['entrega'] == "Pendiente" or $pedidos['entrega']== "En viaje" ) { ?>
+                                        <?php echo $pedidos['entrega'] ?>
+                                       <?php } ?>
                                     
                                     </td>
                            <?php } ?>

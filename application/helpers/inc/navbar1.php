@@ -16,10 +16,7 @@
         <a href="cargarMenu.php" class="nav-link"><span class="oi oi-medical-cross" style="margin-right:12px"></span>Cargar Menús</a>
       </li>
       <li class="nav-item ">
-        <a href="pedidos.php" class="nav-link"><span class="oi oi-box"  style="margin-right:12px"></span>Pedidos</a>
-      </li>
-      <li class="nav-item ">
-        <a href="entregas.php" class="nav-link"><span class="oi oi-briefcase" style="margin-right:12px"></span>Entregas</a>
+        <a href="pedidosComercio.php" class="nav-link"><span class="oi oi-box"  style="margin-right:12px"></span>Pedidos</a>
       </li>
       <li class="nav-item ">
         <a href="actividad.php" class="nav-link"><span class="oi oi-aperture" style="margin-right:12px"></span>Actividad</a>
